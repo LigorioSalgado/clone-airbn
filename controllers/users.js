@@ -3,7 +3,7 @@ import db from '../models';
 
 const User = db.User; //db trae todas las tablas de BD
 
-const createUser =  (request,response) => {
+const signUP =  (request,response) => {
     
     User.create({
         first_name:request.body.first_name,
@@ -14,14 +14,15 @@ const createUser =  (request,response) => {
         type:1
 
     }).then((user) =>{
-        response.json(user)
+        response.json(user).status(200);
     }).catch((err) =>{
         response.status(400).json(err);
     });
 
 }
 
+
 export {
-    createUser
+    signUP
 }
 

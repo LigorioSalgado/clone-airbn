@@ -1,15 +1,16 @@
 import express from 'express';
 import {testApi} from '../controllers';
-import {createUser} from '../controllers/users'
+import {signUP} from '../controllers/users'
 
 
 const router = express.Router();
 
 
-
 router.get('/test',testApi);
 
-router.post('/users',createUser);
+//Crear usuario nuevo.
+router.post('/users/signup',signUP);
+
 
 router.put('/users/profile');
 
