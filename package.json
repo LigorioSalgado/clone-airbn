@@ -2,7 +2,7 @@
     "name": "project-airbnb",
     "version": "1.0.0",
     "scripts": {
-        "client": "cd client && yarn start" , 
+        "client": "cd client && yarn start",
         "server": "nodemon server.js --exec babel-node --presets es2015,stage-2",
         "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
     },
@@ -13,6 +13,7 @@
         "mongoose": "^5.0.12",
         "pg": "^7.4.1",
         "pg-hstore": "^2.3.2",
+        "reactstrap": "^5.0.0-beta.3",
         "sequelize": "^4.37.6"
     },
     "devDependencies": {
