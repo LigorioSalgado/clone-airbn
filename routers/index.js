@@ -11,4 +11,6 @@ router.get('/test',testApi);
 
 router.post('/users',createUser);
 
+router.put('/users/profile');
+
 export default router;
