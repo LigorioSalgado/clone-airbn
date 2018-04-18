@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "scripts": {
         "client": "cd client && yarn start",
+        "cliente": "cd client && npm run start",
         "server": "nodemon server.js --exec babel-node --presets es2015,stage-2",
         "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
     },
