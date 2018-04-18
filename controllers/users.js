@@ -39,16 +39,21 @@ const viewUser = (request,response) => {
 
 const updateUser = (request,response) => {
 
-    User.findAll({
-        where:{
-            first_name:request.body.first_name
+    User.update({
+        first_name:request.body.first_name,
+        lastname:request.body.lastname,
+        email:request.body.email,
+        phone_number:request.body.phone_number,
+        type:1},{
+            where:{
+                email:request.user.email
         }
     }).then((user)=>{
-
         response.json(user)
     }).catch((err)=>{
         response.status(400).json(err);
-    }); 
+
+    });
 
 }
 
