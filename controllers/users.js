@@ -100,10 +100,10 @@ const login  = (req,res) => {
 }
 
 export {
-    signUP
-    createUser,
+    signUP,
     login,
-    updateUser
+    updateUser,
+    viewUser
 }
 
 
