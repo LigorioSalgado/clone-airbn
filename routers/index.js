@@ -1,11 +1,12 @@
 import express from 'express';
 import {testApi} from '../controllers';
-import{createUser, viewUser, updateUser} from '../controllers/users'
+
 import{authenticationMiddleware} from '../middlewares'
 
 
-const router = express.Router();
+import {createUser, login, viewUser, updateUser} from '../controllers/users'
 
+const router = express.Router();
 
 
 router.get('/test',testApi);
@@ -15,6 +16,7 @@ router.get('/test',testApi);
 router.post('/users',createUser); //Ruta para crear usuarios
 router.get('/users/profile', authenticationMiddleware, viewUser); //Ruta para ver usuarios
 router.put('/users/profile', authenticationMiddleware, updateUser); //Ruta para actualizar usuarios
+router.post('/users/login',login);
 
 
 export default router;

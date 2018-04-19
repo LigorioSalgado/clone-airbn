@@ -1,9 +1,9 @@
 {
     "development": {
-        "username": "postgres",
-        "password": "postgres",
-        "database": "airbnb",
-        "host": "127.0.0.1",
+        "username": "uyfhyiol",
+        "password": "wwv4BYuOzYiSBCGe2_8iyLHc4s7qK4Ne",
+        "database": "uyfhyiol",
+        "host": "elmer.db.elephantsql.com",
         "dialect": "postgres",
         "operatorsAliases": false
 
