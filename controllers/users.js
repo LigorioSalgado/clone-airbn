@@ -7,7 +7,7 @@ import db from '../models';
 
 const User = db.User; //db trae todas las tablas de BD
 
-const createUser =  (request,response) => {
+const signUP =  (request,response) => {
     
 
     User.create({
@@ -18,12 +18,13 @@ const createUser =  (request,response) => {
         phone_number:request.body.phone_number,
         type:1
     }).then((user) =>{
-        response.json(user)
+        response.json(user).status(200);
     }).catch((err) =>{
         response.status(400).json(err);
     });
 
 }
+
 
 
 const viewUser = (request,response) => {
@@ -99,6 +100,7 @@ const login  = (req,res) => {
 }
 
 export {
+    signUP
     createUser,
     login,
     updateUser

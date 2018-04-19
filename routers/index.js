@@ -1,19 +1,21 @@
 import express from 'express';
 import {testApi} from '../controllers';
+import {signUP} from '../controllers/users'
+
 
 import{authenticationMiddleware} from '../middlewares'
 
 
-import {createUser, login, viewUser, updateUser} from '../controllers/users'
+import {signUP, login, viewUser, updateUser} from '../controllers/users'
 
 const router = express.Router();
 
-
 router.get('/test',testApi);
 
-//Rutas de usuario
+//Crear usuario nuevo.
+router.post('/users/signup',signUP);
 
-router.post('/users',createUser); //Ruta para crear usuarios
+//Rutas de usuario
 router.get('/users/profile', authenticationMiddleware, viewUser); //Ruta para ver usuarios
 router.put('/users/profile', authenticationMiddleware, updateUser); //Ruta para actualizar usuarios
 router.post('/users/login',login);
