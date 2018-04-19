@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './login.css';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import {connect} from 'react-redux';
-import {Control} from 'react-redux-form';
+import { connect } from 'react-redux';
+import { Control } from 'react-redux-form';
 
 
 class Login extends Component {
@@ -10,8 +10,13 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            saludito: "this is a login!!"
+            email: '',
+            password: ''
         };
+
+        this.handleChangeEmail = this.handleChangeEmail.bind(this);
+        this.handleChangePassword = this.handleChangePassword.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
 
@@ -23,9 +28,22 @@ class Login extends Component {
         //Si el componente padre pasa props despues de renderear
     }
 
-    saveNewUser(val) {
-        console.log('val: ', val);
-        val.preventDefault();
+    handleChangeEmail(event) {
+        this.setState({ email: event.target.value });
+    }
+
+    handleChangePassword(event) {
+        this.setState({ password: event.target.value });
+    }
+
+    handleSubmit(event) {
+        console.log('data Login ', this.state);
+        event.preventDefault();
+        if(this.state.email && this.state.password){
+            this.saveLocalStorage(this.state);
+        }else {
+            console.error('Datos incompletos')
+        }
     }
 
 
@@ -36,15 +54,14 @@ class Login extends Component {
 
             <div>
                 {/* debe haber un elemento contenedor */}
-                <Form model="user" onSubmit={(val) => this.saveNewUser(val)}>
+                <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label for="exampleEmail">Email</Label>
-                        <Input valid />
-                        <Input type="email" name="email" id="exampleEmail" model=".email" placeholder="Direccion de correo electrónico" required />
+                        <Input type="email" name="email" id="exampleEmail" value={this.state.email} onChange={this.handleChangeEmail} placeholder="Direccion de correo electrónico" required />
                     </FormGroup>
                     <FormGroup>
                         <Label for="examplePassword">Password</Label>
-                        <Input type="password" name="password" id="examplePassword" placeholder="Contraseña" required />
+                        <Input type="password" name="password" id="examplePassword" placeholder="Contraseña" value={this.state.password} onChange={this.handleChangePassword} required />
                     </FormGroup>
                     <Button type="submit"> Iniciar sesión</Button>
 
@@ -54,6 +71,12 @@ class Login extends Component {
         );
     }
 
+    saveLocalStorage(data) {
+        localStorage.setItem('myData', JSON.stringify(data));
+    }
+
 }
+
+
 //lo unico que voy a exportar
 export default Login;
