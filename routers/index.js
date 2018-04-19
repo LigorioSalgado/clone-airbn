@@ -1,7 +1,5 @@
 import express from 'express';
 import {testApi} from '../controllers';
-import {signUP} from '../controllers/users'
-
 
 import{authenticationMiddleware} from '../middlewares'
 
