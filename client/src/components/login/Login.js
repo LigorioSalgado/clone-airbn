@@ -11,8 +11,10 @@ class Login extends Component {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            token: null
         };
+        this.user;
 
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -39,6 +41,7 @@ class Login extends Component {
     handleSubmit(event) {
         console.log('data Login ', this.state);
         event.preventDefault();
+        this.state.token = 'ojsmokm3okm32093093i92k39k30i32oimksmdoksm439j0r9202323039i49==9jeij239n23';
         if(this.state.email && this.state.password){
             this.saveLocalStorage(this.state);
         }else {
@@ -72,7 +75,10 @@ class Login extends Component {
     }
 
     saveLocalStorage(data) {
-        localStorage.setItem('myData', JSON.stringify(data));
+        localStorage.setItem('user', JSON.stringify(data));
+        this.user = JSON.parse(localStorage.getItem('user'));
+        console.log('user: ', this.user);
+        console.log('token: ', this.user.token);
     }
 
 }
