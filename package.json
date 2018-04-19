@@ -2,6 +2,10 @@
     "name": "project-airbnb",
     "version": "1.0.0",
     "scripts": {
+        "build": "babel -d ./build . --ignore node_modules,client",
+        "prebuild": "rm -rf build/*",
+        "start": "node ./build/server.js",
+        "prestart": "npm build",
         "client": "cd client && yarn start",
         "cliente": "cd client && npm run start",
         "server": "nodemon server.js --exec babel-node --presets es2015,stage-2",
