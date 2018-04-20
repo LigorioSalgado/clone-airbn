@@ -30,7 +30,7 @@ const signUP =  (request,response) => {
 const viewUser = (request,response) => {
 
     User.findOne({
-        attributes: ['first_name', 'lastname','email','password','phone_number','type'],
+        attributes: ['first_name', 'lastname','email','password','phone_number','type','profile_image','description','score','user_pay','createdAt','updatedAt'],
         where:{
             email:request.user.email
         }
@@ -50,12 +50,29 @@ const updateUser = (request,response) => {
         lastname:request.body.lastname,
         email:request.body.email,
         phone_number:request.body.phone_number,
-        type:1},{
+        type:1,
+        profile_image:request.body.profile_image,
+        description:request.body.description,
+        score:request.body.score,
+        user_pay:request.body.user_pay,
+        createdAt:request.body.createdAt,
+        updatedAt:request.body.updateUser
+    },{
             where:{
                 email:request.user.email
         }
     }).then((user)=>{
-        response.json(user)
+        User.findOne({
+            attributes: ['first_name', 'lastname','email','password','phone_number','type','profile_image','description','score','user_pay','createdAt','updatedAt'],
+            where:{
+                email:request.user.email
+            }
+        }).then((user)=>{
+            response.json(user)
+        }).catch((err)=>{
+            response.status(400).json(err);
+    
+        });
     }).catch((err)=>{
         response.status(400).json(err);
 
