@@ -3,6 +3,7 @@ import './login.css';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { connect } from 'react-redux';
 import { Control } from 'react-redux-form';
+import Axios from 'axios';
 
 
 class Login extends Component {
@@ -12,7 +13,6 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            token: null
         };
         this.user;
 
@@ -41,10 +41,9 @@ class Login extends Component {
     handleSubmit(event) {
         console.log('data Login ', this.state);
         event.preventDefault();
-        this.state.token = 'ojsmokm3okm32093093i92k39k30i32oimksmdoksm439j0r9202323039i49==9jeij239n23';
-        if(this.state.email && this.state.password){
-            this.saveLocalStorage(this.state);
-        }else {
+        if (this.state.email && this.state.password) {
+            this.saveUser(this.state);
+        } else {
             console.error('Datos incompletos')
         }
     }
@@ -74,12 +73,25 @@ class Login extends Component {
         );
     }
 
-    saveLocalStorage(data) {
-        localStorage.setItem('user', JSON.stringify(data));
-        this.user = JSON.parse(localStorage.getItem('user'));
-        console.log('user: ', this.user);
-        console.log('token: ', this.user.token);
+    saveUser(user) {
+
+        console.log('saveUser: ', user)
+
+        Axios.post('https://airbnb-cn-b19.herokuapp.com/api/v1/users/login', user)
+            .then(function (Response) {
+                console.log('Response*******:', );
+                localStorage.setItem('token', Response.data.token);
+
+                let token = localStorage.getItem('token');
+                console.log('token: ', token);
+
+            }).catch(function (error) {
+                    console.log('error:', JSON.stringify(error.response.data.message));
+                    // console.log(error.)
+            });
     }
+
+
 
 }
 
