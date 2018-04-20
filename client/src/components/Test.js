@@ -24,28 +24,9 @@ class Test extends Component {
         //Si el componente padre pasa props despues de renderear
     }
 
-    EscuchadorDeClicks() {
+    SendResponseToBack(){
+        console.log('https://swapi.co/api/planets/3/');
         axios.get('https://swapi.co/api/planets/3/')
-            .then(Response => console.log(Response));
-    }
-    /*
-    ObtenerdorDeResponses() {
-        console.log('Inicio el procedure :c');
-        const response = axios.get('https://swapi.co/api/planets/3/');
-        console.log(response)
-        return response;
-    }
-
-    IniciarResponse() {
-        console.log('Inicio el procedure');
-        const response = this.ObtenerdorDeResponses;
-        console.log(response);
-    }*/
-
-
-
-    SegundoEscuchadorDeClicks() {
-        axios.get('https://swapi.co/api/planets/3/okoko')
             .then(function (Response) {
                 console.log(Response);
             }).catch(function (error) {
@@ -62,9 +43,7 @@ class Test extends Component {
                 <h5>{this.props.saludo}</h5>
                 <h3>{this.state.saludito}</h3>
                 <div>
-                    
-                    <Button onClick={this.SegundoEscuchadorDeClicks} color="warning">Con manejador de Errores!</Button><br /><br />
-                    <Button onClick={this.EscuchadorDeClicks} color="danger">Danger!</Button>
+                    <Button onClick={this.SendResponseToBack} color="warning">Con manejador de Errores!</Button><br /><br />
                 </div>
             </div>
         );

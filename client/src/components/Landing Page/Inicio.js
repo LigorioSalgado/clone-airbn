@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Estilos.css';
+import { Button } from 'reactstrap'
 
 class Inicio extends Component {
 
@@ -22,11 +23,17 @@ class Inicio extends Component {
     render() {
         //Necesita regresar un objeto
         return (
+            <html lang="es">
+                <title>
+                    Inicio ;)
+                </title>
+                <body>
+                    <div>
+                        
+                    </div>
+                </body>
+            </html>
 
-            <div>
-                {/* debe haber un elemento contenedor */}
-                <h1>{this.state.saludito}</h1>
-            </div>
         );
     }
 
