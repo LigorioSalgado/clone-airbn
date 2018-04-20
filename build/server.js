@@ -19,7 +19,7 @@ var _models2 = _interopRequireDefault(_models);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
-var port = 8000 || process.env.PORT;
+var port = process.env.PORT || 8000;
 
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
 app.use(_bodyParser2.default.json());
