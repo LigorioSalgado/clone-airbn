@@ -7,11 +7,11 @@ module.exports = (sequelize, DataTypes) => {
       required:true
     },
     num_ext: {
-      type:DataTypes.INTEGER,
+      type:DataTypes.STRING,
       allowNull:false,
       required:true
     },
-    num_int : DataTypes.INTEGER,
+    num_int : DataTypes.STRING,
     colonia:  {
       type:DataTypes.STRING,
       allowNull:false,

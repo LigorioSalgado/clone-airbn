@@ -39,8 +39,6 @@ db.User.hasMany(db.Estate);
 db.Estate.hasOne(db.Address);
 db.Booking.belongsTo(db.User);
 db.User.hasMany(db.Booking);
-db.Booking.hasOne(db.Address);
-db.Estate.hasOne(db.Address);
 db.User.hasMany(db.Favs);
 db.Favs.hasMany(db.Estate)
 
