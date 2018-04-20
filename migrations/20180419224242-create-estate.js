@@ -8,13 +8,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ower_id: {
-        type: Sequelize.INT
-      },
-      address_id: {
-        type: Sequelize.INT
-      },
-      decription: {
+    
+      description: {
         type: Sequelize.TEXT
       },
       score: {

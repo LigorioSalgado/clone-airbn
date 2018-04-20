@@ -34,12 +34,13 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 //Relations
-db.Estate.belongsTo(db.User);
 db.User.hasMany(db.Estate);
-db.Estate.hasOne(db.Address);
-db.Booking.belongsTo(db.User);
 db.User.hasMany(db.Booking);
-db.User.hasMany(db.Favs);
-db.Favs.hasMany(db.Estate)
+db.Estate.hasOne(db.Service);
+db.Estate.hasOne(db.Address);
+db.Estate.hasMany(db.Booking);
+db.Estate.belongsTo(db.User);
+db.Booking.belongsTo(db.User);
+
 
 module.exports = db;
