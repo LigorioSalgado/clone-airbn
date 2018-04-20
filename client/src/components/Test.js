@@ -24,8 +24,8 @@ class Test extends Component {
         //Si el componente padre pasa props despues de renderear
     }
 
+    //Este metodo enviara a la base de datos el response
     SendResponseToBack(){
-        console.log('https://swapi.co/api/planets/3/');
         axios.get('https://swapi.co/api/planets/3/')
             .then(function (Response) {
                 console.log(Response);
