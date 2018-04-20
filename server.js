@@ -4,7 +4,7 @@ import routes from './routers';
 import db from './models';
 
 const app = express();
-const port = 8000 || process.env.PORT;
+const port = process.env.PORT || 8000 ;
 
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
