@@ -33,4 +33,14 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+//Relations
+db.User.hasMany(db.Estate);
+db.User.hasMany(db.Booking);
+db.Estate.hasOne(db.Service);
+db.Estate.hasOne(db.Address);
+db.Estate.hasMany(db.Booking);
+db.Estate.belongsTo(db.User);
+db.Booking.belongsTo(db.User);
+
+
 module.exports = db;
