@@ -8,6 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+
       calle: {
         type: Sequelize.STRING
       },
