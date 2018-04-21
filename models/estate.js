@@ -2,6 +2,11 @@
 module.exports = (sequelize, DataTypes) => {
   var Estate = sequelize.define('Estate', {
 
+    estate_name:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    
     description: DataTypes.TEXT,
 
     score: DataTypes.DECIMAL,
