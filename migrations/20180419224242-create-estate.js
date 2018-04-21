@@ -9,6 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
     
+      estate_name:{
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+
       description: {
         type: Sequelize.TEXT
       },

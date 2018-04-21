@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     totalprice:{
        type:DataTypes.DECIMAL,
        allowNull:false
+    },
+
+    score: {
+      type:DataTypes.INTEGER, 
     }
   }, {});
   Booking.associate = function(models) {
