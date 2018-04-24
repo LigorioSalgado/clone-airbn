@@ -1,7 +1,11 @@
-body{
+.jumbotron{
+    background-color: rgba(100, 100, 100, .5) !important;
+    color: white !important;
+}
+.Seccion{
     background-image: url('https://newevolutiondesigns.com/images/freebies/city-wallpaper-9.jpg');
     background-size: cover;
 }
-.jumbotron{
-    opacity: .9 !important;
+.Body{
+    text-align: center;
 }
