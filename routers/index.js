@@ -5,6 +5,7 @@ import{authenticationMiddleware} from '../middlewares'
 
 
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
+import {getBookings} from '../controllers/bookings'
 
 const router = express.Router();
 
@@ -18,5 +19,7 @@ router.get('/users/profile', authenticationMiddleware, viewUser); //Ruta para ve
 router.put('/users/profile', authenticationMiddleware, updateUser); //Ruta para actualizar usuarios
 router.post('/users/login',login);
 
+//Rutas bookings
+router.get('/bookings/all', getBookings)
 
 export default router;
