@@ -32,7 +32,7 @@ const viewAllEstatesUser = (request,response) => {
             model:User,
             attributes: ['first_name', 'lastname', 'profile_image','description','score'],
             where:{ 
-                email: request.user.email
+                id: request.user.id
             }
         }]
     }).then((user)=>{

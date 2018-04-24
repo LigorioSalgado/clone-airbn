@@ -100,6 +100,7 @@ const login  = (req,res) => {
         bcrypt.compare(req.body.password, user.password,(err, result) =>{
             if(result){
                 let newUser = {
+                    id:user.id,
                     email:user.email,
                     name:`${user.first_name} ${user.lastname}`,
                     exp: Math.floor(Date.now()/ 1000) + (60*60*24)
