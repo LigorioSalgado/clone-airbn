@@ -1,3 +1,4 @@
+import {createEstateDB} from '../managers/estates';
 import db from '../models';
 //Asi siempre se manda a llamar a la bd
 
@@ -13,5 +14,20 @@ const viewAllEstates = (request,response) => {
         response.status(400).json(err);
 
     });
+}
 
+const createEstate = (req,res) => {
+    
+    createEstateDB(req.body,req.user.id).then((response) => {
+        res.json(response).status(201);
+    }).catch((err) => {
+        res.json(err).status(400);
+    })
+
+
+}
+
+
+export {
+    viewAllEstates ,createEstate
 }
