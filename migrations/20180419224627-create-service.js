@@ -12,7 +12,7 @@ module.exports = {
       wifi: {
         type: Sequelize.BOOLEAN
       },
-      baños: {
+      bathrooms: {
         type: Sequelize.INT
       },
       estufa: {
