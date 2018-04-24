@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   var Service = sequelize.define('Service', {
     
     wifi: DataTypes.BOOLEAN,
-    baños: DataTypes.INTEGER,
+    bathrooms: DataTypes.INTEGER,
     estufa: DataTypes.BOOLEAN,
     parking: DataTypes.BOOLEAN,
     beds: DataTypes.INTEGER,
