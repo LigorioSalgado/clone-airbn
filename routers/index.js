@@ -5,7 +5,7 @@ import{authenticationMiddleware} from '../middlewares'
 
 
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
-import {getBookings} from '../controllers/bookings'
+import {getBookings, createBooking} from '../controllers/bookings'
 
 import {createEstate} from '../controllers/estates';
 
@@ -22,7 +22,7 @@ router.put('/users/profile', authenticationMiddleware, updateUser); //Ruta para 
 router.post('/users/login',login);
 
 //Rutas bookings
-router.get('/bookings/all', getBookings)
+router.post('/bookings',authenticationMiddleware,createBooking);
 
 router.post('/estates',authenticationMiddleware,createEstate);
 

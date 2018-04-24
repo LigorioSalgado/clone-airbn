@@ -1,11 +1,13 @@
-import db from '../models';
+import {createBookingDB} from '../managers/bookings';
 
-const Booking = db.Booking;
-
-const createBookings = () =>{
-
+const createBooking = (req, res) =>{
+    createBookingDB(req.body, req.user.id).then((response) => {
+        res.json(response).status(201);
+    }).catch((err) => {
+        res.json(err).status(400);
+    })
 }
 
 export{
-    createBookings
+    createBooking
 }
