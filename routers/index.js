@@ -7,6 +7,8 @@ import{authenticationMiddleware} from '../middlewares'
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
 import {getBookings} from '../controllers/bookings'
 
+import {createEstate} from '../controllers/estates';
+
 const router = express.Router();
 
 router.get('/test',testApi);
@@ -21,5 +23,7 @@ router.post('/users/login',login);
 
 //Rutas bookings
 router.get('/bookings/all', getBookings)
+
+router.post('/estates',authenticationMiddleware,createEstate);
 
 export default router;
