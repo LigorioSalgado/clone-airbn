@@ -13,7 +13,14 @@ const createEstate = (req,res) => {
 
 }
 
+const getEstateUser = (req, res) => {
+    Estate.findAll({
+       attributes: ['address_id','decription','score','price','available','photos'],
+       where:{ UserId: req.user.id } 
+    }).then()
+}
 
 export {
-    createEstate
+    createEstate,
+    getEstateUser
 }
