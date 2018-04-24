@@ -1,9 +1,9 @@
 {
     "development": {
-        "username": "uyfhyiol",
-        "password": "wwv4BYuOzYiSBCGe2_8iyLHc4s7qK4Ne",
-        "database": "uyfhyiol",
-        "host": "elmer.db.elephantsql.com",
+        "username": "clonearibnb",
+        "password": "cloneairbnb",
+        "database": "cloneairbnb",
+        "host": "cloneairbnb.crfqsa3a8qoy.us-east-2.rds.amazonaws.com",
         "dialect": "postgres",
         "operatorsAliases": false
 
@@ -15,11 +15,11 @@
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
-  "production": {
-    "username": "uyfhyiol",
-    "password": "wwv4BYuOzYiSBCGe2_8iyLHc4s7qK4Ne",
-    "database": "uyfhyiol",
-    "host": "elmer.db.elephantsql.com",
+  "development": {
+    "username": "clonearibnb",
+    "password": "cloneairbnb",
+    "database": "cloneairbnb",
+    "host": "cloneairbnb.crfqsa3a8qoy.us-east-2.rds.amazonaws.com",
     "dialect": "postgres",
     "operatorsAliases": false
 
