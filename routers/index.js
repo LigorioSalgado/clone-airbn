@@ -7,6 +7,8 @@ import{authenticationMiddleware} from '../middlewares'
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
 import {viewAllEstates} from '../controllers/estates'
 
+import {createEstate} from '../controllers/estates';
+
 const router = express.Router();
 
 router.get('/test',testApi);
@@ -21,5 +23,7 @@ router.post('/users/login',login);
 
 //Rutas de Propiedades
 router.get('/estates/view', viewAllEstates);
+
+router.post('/estates',authenticationMiddleware,createEstate);
 
 export default router;
