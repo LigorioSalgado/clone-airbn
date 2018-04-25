@@ -11,7 +11,7 @@ const {Estate, Address, Service, User} = db; //db trae todas las tablas de BD
 const viewAllEstates = (request,response) => {
 
     Estate.findAll({
-        attributes: ['estate_name','description','score','price','available','photos','createdAt','updatedAt',],
+        attributes: ['id','estate_name','description','score','price','available','photos','createdAt','updatedAt',],
         include:[{
             model: Address
         }]
@@ -23,10 +23,13 @@ const viewAllEstates = (request,response) => {
     });
 }
 
-const viewAllEstatesUser = (request,response) => {
+const viewEstateUser = (request,response) => {
   
-    Estate.findAll({
+    Estate.findOne({
         attributes: ['estate_name','description','score','price','available','photos','createdAt','updatedAt',],
+        where:{ 
+            id: request.params.id
+        },
         include:[{
             model:User,
             attributes: ['first_name', 'lastname', 'profile_image','description','score'],
@@ -43,5 +46,5 @@ const viewAllEstatesUser = (request,response) => {
 }
 
 export {
-        viewAllEstates, viewAllEstatesUser
+        viewAllEstates, viewEstateUser
     }
