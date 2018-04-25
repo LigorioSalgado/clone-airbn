@@ -2,7 +2,7 @@ import {createEstateDB} from '../managers/estates';
 import db from '../models';
 //Asi siempre se manda a llamar a la bd
 
-const Estate = db.Estate; //db trae todas las tablas de BD
+const {Estate, Service, Address, User} = db; //db trae todas las tablas de BD
 
 const viewAllEstates = (request,response) => {
 
@@ -27,7 +27,23 @@ const createEstate = (req,res) => {
 
 }
 
+const retLatLon = (request,response) => { //Regresa las longitudes y latitudes de una ciudad 
+  
+    Address.findAll({
+            model: Address,
+            attributes:['lat','long', 'EstateId'],
+            where:{
+                ciudad:request.params.city
+            }
+    }).then((user)=>{
+        response.json(user)
+    }).catch((err)=>{
+        response.status(400).json(err);
+
+    });
+}
+
 
 export {
-    viewAllEstates ,createEstate
+    viewAllEstates ,createEstate, retLatLon
 }

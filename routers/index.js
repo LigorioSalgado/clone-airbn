@@ -6,7 +6,7 @@ import{authenticationMiddleware} from '../middlewares'
 
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
 
-import {createEstate} from '../controllers/estates';
+import {createEstate, retLatLon} from '../controllers/estates';
 
 const router = express.Router();
 
@@ -22,5 +22,6 @@ router.post('/users/login',login);
 
 
 router.post('/estates',authenticationMiddleware,createEstate);
+router.get('/estates/cityLatLon/:city' ,retLatLon); // Ruta para regresar las longitudes y latitudes de una ciudad en especifico
 
 export default router;
