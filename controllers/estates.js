@@ -6,11 +6,7 @@ import db from '../models';
 
 const {Estate, Address, Service, User} = db; //db trae todas las tablas de BD
 
-import db from '../models';
-//Asi siempre se manda a llamar a la bd
 
-const Estate = db.Estate; //db trae todas las tablas de BD
-const User = db.User
 
 
 const viewAllEstates = (request,response) => {
