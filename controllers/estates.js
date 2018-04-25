@@ -1,4 +1,4 @@
-import {createEstateDB} from '../managers/estates';
+import {createEstateDB, getEstateDB} from '../managers/estates';
 
 
 
@@ -13,7 +13,18 @@ const createEstate = (req,res) => {
 
 }
 
+const viewEstateDetail = (req,res)=>{
+    getEstateDB(
+        req.params.id
+    ).then((response)=>{
+        res.json(response).status(200);
+    }).catch ((err)=>{
+        res.json(err).status(400);
+    })
+}
+
 
 export {
-    createEstate
+    createEstate,
+    viewEstateDetail
 }

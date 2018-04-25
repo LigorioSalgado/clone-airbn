@@ -6,7 +6,7 @@ import{authenticationMiddleware} from '../middlewares'
 
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
 
-import {createEstate} from '../controllers/estates';
+import {createEstate, viewEstateDetail} from '../controllers/estates';
 
 const router = express.Router();
 
@@ -20,7 +20,8 @@ router.get('/users/profile', authenticationMiddleware, viewUser); //Ruta para ve
 router.put('/users/profile', authenticationMiddleware, updateUser); //Ruta para actualizar usuarios
 router.post('/users/login',login);
 
-
+//Rutas de Propiedad
 router.post('/estates',authenticationMiddleware,createEstate);
+router.get('/estates/:id', viewEstateDetail);
 
 export default router;
