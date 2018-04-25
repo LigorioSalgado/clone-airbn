@@ -38,11 +38,6 @@ const viewEstateUser = (request,response) => {
                 id: request.user.id
             }
         },{model: Address},{model: Service}]
-        attributes: ['estate_name','description','score','price','available','photos','createdAt','updatedAt',],
-        include:[{
-            model: User,
-            attributes: ['first_name', 'lastname', 'profile_image','description','score'],
-        }]
     }).then((user)=>{
         response.json(user)
     }).catch((err)=>{
