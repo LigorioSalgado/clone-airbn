@@ -1,4 +1,6 @@
 
+import {createEstateDB, getEstateDB} from '../managers/estates';
+
 import db from '../models';
 //Asi siempre se manda a llamar a la bd
 
@@ -9,7 +11,6 @@ import db from '../models';
 
 const Estate = db.Estate; //db trae todas las tablas de BD
 const User = db.User
-import {createEstateDB} from '../managers/estates';
 
 
 const viewAllEstates = (request,response) => {
@@ -67,6 +68,17 @@ const createEstate = (req,res) => {
 
 }
 
+const viewEstateDetail = (req,res)=>{
+    getEstateDB(
+        req.params.id
+    ).then((response)=>{
+        res.json(response).status(200);
+    }).catch ((err)=>{
+        res.json(err).status(400);
+    })
+}
+
+
 const getEstateUser = (req, res) => {
     Estate.findAll({
        attributes: ['address_id','decription','score','price','available','photos'],
@@ -79,6 +91,7 @@ export {
     createEstate,
     getEstateUser,
     viewAllEstates,
-    viewEstateUser
+    viewEstateUser,
+    viewEstateDetail
 }
 

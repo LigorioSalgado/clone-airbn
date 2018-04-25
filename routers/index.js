@@ -7,7 +7,8 @@ import{authenticationMiddleware} from '../middlewares'
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
 import {getBookings, createBooking} from '../controllers/bookings'
 
-import {viewAllEstates, viewEstateUser,createEstate,getEstateUser} from '../controllers/estates'
+import {viewAllEstates, viewEstateUser,createEstate,getEstateUser,viewEstateDetail} from '../controllers/estates'
+
 
 
 const router = express.Router();
@@ -28,8 +29,8 @@ router.post('/bookings',authenticationMiddleware,createBooking);
 //Rutas de Propiedades
 router.get('/estates/view', viewAllEstates); //Ruta para ver todas las propiedades
 router.get('/estates/user/:id', authenticationMiddleware ,viewEstateUser); //Ruta para ver todas las propiedades de un usuario
-router.get('/estates/view', viewAllEstates);
 router.post('/estates',authenticationMiddleware,createEstate);
+router.get('/estates/:id', viewEstateDetail);
 
 //traer Propiedades de Ususario
 router.get('/getestate', authenticationMiddleware, getEstateUser);
