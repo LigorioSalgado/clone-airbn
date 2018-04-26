@@ -27,6 +27,6 @@ router.post('/estates',authenticationMiddleware,createEstate);
 router.put('/estate/:id',authenticationMiddleware, updateEstate);
 
 //traer Propiedades de Ususario
-router.get('/getestate', authenticationMiddleware, getEstateUser);
+router.get('/estates/user', authenticationMiddleware, getEstateUser);
 
 export default router;
