@@ -9,12 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      estate_id: {
-        type: Sequelize.INT
-      },
-      user_id: {
-        type: Sequelize.INT
-      },
+
       guest: {
         type: Sequelize.INT
       },

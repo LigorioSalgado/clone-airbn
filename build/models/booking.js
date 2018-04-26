@@ -2,14 +2,7 @@
 
 module.exports = function (sequelize, DataTypes) {
   var Booking = sequelize.define('Booking', {
-    estate_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
+
     guest: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -27,6 +20,10 @@ module.exports = function (sequelize, DataTypes) {
     totalprice: {
       type: DataTypes.DECIMAL,
       allowNull: false
+    },
+
+    score: {
+      type: DataTypes.INTEGER
     }
   }, {});
   Booking.associate = function (models) {

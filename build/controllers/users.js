@@ -109,6 +109,7 @@ var login = function login(req, res) {
         _bcryptNodejs2.default.compare(req.body.password, user.password, function (err, result) {
             if (result) {
                 var newUser = {
+                    id: user.id,
                     email: user.email,
                     name: user.first_name + ' ' + user.lastname,
                     exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24
