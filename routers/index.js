@@ -7,7 +7,7 @@ import{authenticationMiddleware} from '../middlewares'
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
 import {getBookings, createBooking} from '../controllers/bookings'
 
-import {viewAllEstates, viewEstateUser,createEstate,getEstateUser,viewEstateDetail} from '../controllers/estates'
+import {viewAllEstates, viewEstateUser,createEstate,getEstateUser,viewEstateDetail,retLatLon} from '../controllers/estates'
 
 
 
@@ -30,6 +30,8 @@ router.post('/bookings',authenticationMiddleware,createBooking);
 router.get('/estates/view', viewAllEstates); //Ruta para ver todas las propiedades
 router.get('/estates/user/:id', authenticationMiddleware ,viewEstateUser); //Ruta para ver todas las propiedades de un usuario
 router.post('/estates',authenticationMiddleware,createEstate);
+router.get('/estates/cityLatLon/:city' ,retLatLon); // Ruta para regresar las longitudes y latitudes de una ciudad en especifico
+
 router.get('/estates/:id', viewEstateDetail);
 
 //traer Propiedades de Ususario

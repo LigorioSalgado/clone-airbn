@@ -1,4 +1,5 @@
 
+
 import {createEstateDB, getEstateDB} from '../managers/estates';
 
 import db from '../models';
@@ -47,7 +48,6 @@ const viewEstateUser = (request,response) => {
 }
 
 
-
 const createEstate = (req,res) => {
     
     createEstateDB(req.body,req.user.id).then((response) => {
@@ -58,6 +58,25 @@ const createEstate = (req,res) => {
 
 
 }
+
+const retLatLon = (request,response) => { //Regresa las longitudes y latitudes de una ciudad 
+  
+    Address.findAll({
+            model: Address,
+            attributes:['lat','long', 'EstateId'],
+            where:{
+                ciudad:request.params.city
+            }
+    }).then((user)=>{
+        response.json(user)
+    }).catch((err)=>{
+        response.status(400).json(err);
+
+    });
+}
+
+
+
 
 const viewEstateDetail = (req,res)=>{
     getEstateDB(
@@ -83,6 +102,7 @@ export {
     getEstateUser,
     viewAllEstates,
     viewEstateUser,
-    viewEstateDetail
+    viewEstateDetail,
+    retLatLon
 }
 
