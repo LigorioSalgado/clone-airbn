@@ -6,7 +6,7 @@ import{authenticationMiddleware} from '../middlewares'
 
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
 
-import {createEstate, getEstateUser} from '../controllers/estates';
+import {createEstate, getEstateUser, updateEstate} from '../controllers/estates';
 
 const router = express.Router();
 
@@ -22,6 +22,9 @@ router.post('/users/login',login);
 
 
 router.post('/estates',authenticationMiddleware,createEstate);
+
+//Actualizar Propiedades del Usuario
+router.put('/estate/:id',authenticationMiddleware, updateEstate);
 
 //traer Propiedades de Ususario
 router.get('/getestate', authenticationMiddleware, getEstateUser);

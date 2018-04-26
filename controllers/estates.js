@@ -1,4 +1,4 @@
-import {createEstateDB} from '../managers/estates';
+import {createEstateDB, updateEstateDB} from '../managers/estates';
 
 
 
@@ -13,6 +13,14 @@ const createEstate = (req,res) => {
 
 }
 
+const updateEstate = (req,res) =>{
+    updateEstateDB(req.body, req.params.id, req.user.id).then((response)=>{
+        res.json(response).status(200);
+    }).catch((err)=>{
+         res.json(err).status(400);
+    })
+ }
+
 const getEstateUser = (req, res) => {
     Estate.findAll({
        attributes: ['address_id','decription','score','price','available','photos'],
@@ -22,5 +30,6 @@ const getEstateUser = (req, res) => {
 
 export {
     createEstate,
-    getEstateUser
+    getEstateUser,
+    updateEstate
 }
