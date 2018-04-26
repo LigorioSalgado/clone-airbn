@@ -1,9 +1,9 @@
 {
     "development": {
-        "username": "airuser",
-        "password": "airbnb",
-        "database": "airbnb",
-        "host": "127.0.0.1",
+        "username": "clonearibnb",
+        "password": "cloneairbnb",
+        "database": "cloneairbnb",
+        "host": "cloneairbnb.crfqsa3a8qoy.us-east-2.rds.amazonaws.com",
         "dialect": "postgres",
         "operatorsAliases": false
 
@@ -16,10 +16,12 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "clonearibnb",
+    "password": "cloneairbnb",
+    "database": "cloneairbnb",
+    "host": "cloneairbnb.crfqsa3a8qoy.us-east-2.rds.amazonaws.com",
+    "dialect": "postgres",
+    "operatorsAliases": false
+
   }
 }

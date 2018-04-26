@@ -1,0 +1,27 @@
+{
+    "development": {
+        "username": "uyfhyiol",
+        "password": "wwv4BYuOzYiSBCGe2_8iyLHc4s7qK4Ne",
+        "database": "uyfhyiol",
+        "host": "elmer.db.elephantsql.com",
+        "dialect": "postgres",
+        "operatorsAliases": false
+
+      },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "uyfhyiol",
+    "password": "wwv4BYuOzYiSBCGe2_8iyLHc4s7qK4Ne",
+    "database": "uyfhyiol",
+    "host": "elmer.db.elephantsql.com",
+    "dialect": "postgres",
+    "operatorsAliases": false
+
+  }
+}

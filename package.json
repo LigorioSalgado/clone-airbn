@@ -2,14 +2,21 @@
     "name": "project-airbnb",
     "version": "1.0.0",
     "scripts": {
-        "client": "cd client && yarn start" , 
+        "build": "babel -d ./build . --ignore node_modules,client",
+        "prebuild": "rm -rf build/*",
+        "start": "node ./build/server.js",
+        "prestart": "npm build",
+        "client": "cd client && yarn start",
+        "cliente": "cd client && npm run start",
         "server": "nodemon server.js --exec babel-node --presets es2015,stage-2",
         "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
     },
     "dependencies": {
         "bcrypt-nodejs": "^0.0.3",
         "body-parser": "^1.18.2",
+        "cors": "^2.8.4",
         "express": "^4.16.3",
+        "jsonwebtoken": "^8.2.1",
         "mongoose": "^5.0.12",
         "pg": "^7.4.1",
         "pg-hstore": "^2.3.2",
