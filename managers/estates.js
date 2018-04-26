@@ -7,15 +7,13 @@ const getEstateDB = (id) =>{
 
     return new Promise((resolve,reject) => {
 
-        Estate.find({where:{id:id},include:[Address,Service]}).then(
+        Estate.find({where:{id:id},include:[Address,Service,User]}).then(
             (estate) => {
                 resolve(estate)
             }).catch((err) => {
                 reject(err);
             })
     })
-
-
 
 }
 
@@ -54,5 +52,6 @@ const createEstateDB = (body,user) => {
 
 
 export {
-    createEstateDB
+    createEstateDB,
+    getEstateDB
 }

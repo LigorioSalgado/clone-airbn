@@ -5,8 +5,11 @@ import{authenticationMiddleware} from '../middlewares'
 
 
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
+import {getBookings, createBooking} from '../controllers/bookings'
 
-import {createEstate, retLatLon} from '../controllers/estates';
+import {viewAllEstates, viewEstateUser,createEstate,getEstateUser,viewEstateDetail,retLatLon} from '../controllers/estates'
+
+
 
 const router = express.Router();
 
@@ -20,8 +23,18 @@ router.get('/users/profile', authenticationMiddleware, viewUser); //Ruta para ve
 router.put('/users/profile', authenticationMiddleware, updateUser); //Ruta para actualizar usuarios
 router.post('/users/login',login);
 
+//Rutas bookings
+router.post('/bookings',authenticationMiddleware,createBooking);
 
+//Rutas de Propiedades
+router.get('/estates/view', viewAllEstates); //Ruta para ver todas las propiedades
+router.get('/estates/user/:id', authenticationMiddleware ,viewEstateUser); //Ruta para ver todas las propiedades de un usuario
 router.post('/estates',authenticationMiddleware,createEstate);
 router.get('/estates/cityLatLon/:city' ,retLatLon); // Ruta para regresar las longitudes y latitudes de una ciudad en especifico
+
+router.get('/estates/:id', viewEstateDetail);
+
+//traer Propiedades de Ususario
+router.get('/getestate', authenticationMiddleware, getEstateUser);
 
 export default router;
