@@ -20,7 +20,6 @@ const getEstateDB = (id) =>{
 }
 
 
-
 const createEstateDB = (body,user) => {
 
     return new Promise((resolve,reject) => {

@@ -3,6 +3,7 @@ import {testApi} from '../controllers';
 
 import{authenticationMiddleware} from '../middlewares'
 
+import {viewBookingTravelerLogin} from '../controllers/bookings'
 
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
 
@@ -20,6 +21,7 @@ router.get('/users/profile', authenticationMiddleware, viewUser); //Ruta para ve
 router.put('/users/profile', authenticationMiddleware, updateUser); //Ruta para actualizar usuarios
 router.post('/users/login',login);
 
+router.get('/users/booking/:id', authenticationMiddleware, viewBookingTravelerLogin);
 
 router.post('/estates',authenticationMiddleware,createEstate);
 
