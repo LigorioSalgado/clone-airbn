@@ -25,7 +25,7 @@ const getBookingsTravelerDB = (userId) => {
             {where:{UserId:userId},
             include:[
                 {model:Estate, attributes: ['estate_name'], 
-                    include:[{model:Service, as:'Services', attributes: ['id','wifi']},
+                    include:[{model:Address, attributes: ['pais','ciudad']},
                     {model:User, attributes: ['first_name', 'profile_image']}]},
             ]}).then((booking) => {
                 resolve(booking);

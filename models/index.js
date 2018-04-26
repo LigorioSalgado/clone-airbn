@@ -36,7 +36,7 @@ db.Sequelize = Sequelize;
 //Relations
 db.User.hasMany(db.Estate);
 db.User.hasMany(db.Booking);
-db.Estate.hasOne(db.Service, {as:'Services'});
+db.Estate.hasOne(db.Service);
 db.Estate.hasOne(db.Address);
 db.Estate.hasMany(db.Booking);
 db.Estate.belongsTo(db.User);
