@@ -1,4 +1,7 @@
-import {createBookingDB} from '../managers/bookings';
+import {createBookingDB, getBookingsTravelerDB} from '../managers/bookings';
+import db from '../models';
+
+const {Booking} = db;
 
 const createBooking = (req, res) =>{
     createBookingDB(req.body, req.user.id).then((response) => {
@@ -8,6 +11,15 @@ const createBooking = (req, res) =>{
     })
 }
 
+const getBookingsTraveler = (req, res) =>{
+    getBookingsTravelerDB(req.user.id).then((response) => {
+        res.json(response).status(200);
+    }).catch((err) => {
+        res.json(err).status(400);
+    })
+}
+
 export{
-    createBooking
+    createBooking, 
+    getBookingsTraveler
 }

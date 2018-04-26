@@ -1,6 +1,6 @@
 import db from '../models';
 
-const {Booking} = db;
+const {Booking, Estate, User, Address, Service} = db;
 
 const createBookingDB = (body, user) => {
     return new Promise ((resolve, reject) => {
@@ -19,6 +19,23 @@ const createBookingDB = (body, user) => {
     })
 }
 
+const getBookingsTravelerDB = (userId) => {
+    return new Promise ((resolve, reject) => {
+        Booking.find(
+            {where:{UserId:userId},
+            include:[
+                {model:Estate, attributes: ['estate_name'], 
+                    include:[{model:Address, attributes: ['pais','ciudad']},
+                    {model:User, attributes: ['first_name', 'profile_image']}]},
+            ]}).then((booking) => {
+                resolve(booking);
+            }).catch((err) => {
+                reject(err);
+            })
+    })
+}
+
 export{
-    createBookingDB
+    createBookingDB,
+    getBookingsTravelerDB
 }
