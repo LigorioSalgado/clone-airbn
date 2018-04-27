@@ -43,4 +43,5 @@ db.Estate.belongsTo(db.User);
 db.Booking.belongsTo(db.User);
 db.Booking.belongsTo(db.Estate);
 
+
 module.exports = db;
