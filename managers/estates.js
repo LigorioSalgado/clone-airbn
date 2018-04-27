@@ -1,5 +1,7 @@
 import db from '../models';
+import Sequelize from 'sequelize'
 
+var Op = Sequelize.Op;
 const {Estate,Address,Service,User}  = db;
 
 
@@ -50,9 +52,55 @@ const createEstateDB = (body,user) => {
         })
 
     });
-} 
+}
+
+const findCityOrCountry = (city,country) => {
+
+    return new Promise((resolve,reject) => {
+
+        Estate.findAll({
+            attributes: ['id','estate_name','description','score','price','available','photos','createdAt','updatedAt','UserId'],
+            include:[
+            {
+                model: Address,
+                where: {
+                    [Op.or]: [{ciudad:city}, {pais:country}]
+                }
+            }]
+        }).then((response)=>{
+            resolve(response)
+        }).catch((err)=>{
+            reject(err);
+        })
+
+    });
+}
+
+const findCityAndCountry = (city,country) => {
+
+    return new Promise((resolve,reject) => {
+
+        Estate.findAll({
+            attributes: ['id','estate_name','description','score','price','available','photos','createdAt','updatedAt','UserId'],
+            include:[
+            {
+                model: Address,
+                where: {
+                    ciudad:city,
+                    pais:country
+                }
+            }]
+        }).then((response)=>{
+            resolve(response)
+        }).catch((err)=>{
+            reject(err);
+        })
+
+    });
+}
+
 
 
 export {
-    createEstateDB
+    createEstateDB, findCityOrCountry, findCityAndCountry
 }
