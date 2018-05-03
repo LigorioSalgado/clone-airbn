@@ -3,11 +3,8 @@ import {testApi} from '../controllers';
 
 import{authenticationMiddleware} from '../middlewares'
 
-import {viewBookingTravelerLogin} from '../controllers/bookings'
-
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
-import {getBookings, createBooking, getBookingsTraveler} from '../controllers/bookings'
-
+import {getBookings, createBooking, getBookingsTraveler, cancellBookingTraveler, viewBookingTravelerLogin, cancellBookingOwner, confirmBookingOwner} from '../controllers/bookings'
 import {viewAllEstates, viewEstateUser,createEstate,getEstateUser,viewEstateDetail,retLatLon,updateEstate} from '../controllers/estates'
 
 
@@ -27,7 +24,12 @@ router.post('/users/login',login);
 router.get('/users/booking/:id', authenticationMiddleware, viewBookingTravelerLogin);
 //Rutas bookings
 router.post('/bookings',authenticationMiddleware,createBooking);
-router.get('/bookings',authenticationMiddleware,getBookingsTraveler);
+router.get('/traveler/bookings',authenticationMiddleware,getBookingsTraveler);
+router.delete('/traveler/booking/:id', authenticationMiddleware, cancellBookingTraveler);
+
+router.get('/owner/booking/:id', authenticationMiddleware, confirmBookingOwner);
+router.put('/owner/booking/:id', authenticationMiddleware, confirmBookingOwner);
+router.delete('/owner/booking/:id', authenticationMiddleware, cancellBookingOwner);
 
 //Rutas de Propiedades
 router.get('/estates/view', viewAllEstates); //Ruta para ver todas las propiedades
