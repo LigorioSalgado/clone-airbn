@@ -9,13 +9,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      estate_id: {
-        type: Sequelize.INT
-      },
+
       wifi: {
         type: Sequelize.BOOLEAN
       },
-      baños: {
+      bathrooms: {
         type: Sequelize.INT
       },
       estufa: {

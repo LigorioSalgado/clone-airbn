@@ -1,13 +1,22 @@
-import {createEstateDB, findCityAndCountry, findCityOrCountry} from '../managers/estates';
+
+
+import {createEstateDB, getEstateDB,updateEstateDB,findCityAndCountry, findCityOrCountry} from '../managers/estates';
+
 import db from '../models';
 //Asi siempre se manda a llamar a la bd
 
-const {Estate, User, Address, Service}= db; //db trae todas las tablas de BD
+const {Estate, Address, Service, User} = db; //db trae todas las tablas de BD
+
+
+
 
 const viewAllEstates = (request,response) => {
 
     Estate.findAll({
-        attributes: ['estate_name','description','score','price','available','photos','createdAt','updatedAt','UserId'],
+        attributes: ['id','estate_name','description','score','price','available','photos','createdAt','updatedAt',],
+        include:[{
+            model: Address
+        }]
     }).then((user)=>{
         response.json(user)
     }).catch((err)=>{
@@ -15,6 +24,29 @@ const viewAllEstates = (request,response) => {
 
     });
 }
+
+const viewEstateUser = (request,response) => {
+  
+    Estate.findOne({
+        attributes: ['estate_name','description','score','price','available','photos','createdAt','updatedAt',],
+        where:{ 
+            id: request.params.id
+        },
+        include:[{
+            model:User,
+            attributes: ['first_name', 'lastname', 'profile_image','description','score'],
+            where:{ 
+                id: request.user.id
+            }
+        },{model: Address},{model: Service}]
+    }).then((user)=>{
+        response.json(user)
+    }).catch((err)=>{
+        response.status(400).json(err);
+
+    });
+}
+
 
 const createEstate = (req,res) => {
     
@@ -47,7 +79,60 @@ const filterCityCountry = (request,res) => {
 
 }
 
+const updateEstate = (req,res) =>{
+    updateEstateDB(req.body, req.params.id, req.user.id).then((response)=>{
+        res.json(response).status(200);
+    }).catch((err)=>{
+         res.json(err).status(400);
+    })
+ }
+
+const retLatLon = (request,response) => { //Regresa las longitudes y latitudes de una ciudad 
+  
+    Address.findAll({
+            model: Address,
+            attributes:['lat','long', 'EstateId'],
+            where:{
+                ciudad:request.params.city
+            }
+    }).then((user)=>{
+        response.json(user)
+    }).catch((err)=>{
+        response.status(400).json(err);
+
+    });
+}
+
+
+
+
+const viewEstateDetail = (req,res)=>{
+    getEstateDB(
+        req.params.id
+    ).then((response)=>{
+        res.json(response).status(200);
+    }).catch ((err)=>{
+        res.json(err).status(400);
+    })
+}
+
+
+const getEstateUser = (req, res) => {
+    Estate.findAll({
+       attributes: ['address_id','decription','score','price','available','photos'],
+       where:{ UserId: req.user.id } 
+    }).then()
+}
 
 export {
-    viewAllEstates ,createEstate, filterCityCountry
+    createEstate, 
+    filterCityCountry
+    createEstate,
+    getEstateUser,
+    updateEstate,
+    viewAllEstates,
+    viewEstateUser,
+    viewEstateDetail,
+    retLatLon
 }
+
