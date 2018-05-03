@@ -20,7 +20,9 @@
         "mongoose": "^5.0.12",
         "pg": "^7.4.1",
         "pg-hstore": "^2.3.2",
-        "sequelize": "^4.37.6"
+        "sequelize": "^4.37.6",
+        "swagger-jsdoc": "^1.9.7",
+        "swagger-ui-express": "^3.0.8"
     },
     "devDependencies": {
         "babel-cli": "^6.24.1",
