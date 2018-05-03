@@ -76,7 +76,7 @@ const getBookingOwnerDB = (userId, bookingId) => {
         }).then((booking) => {
             resolve(booking)
         }).catch((err) => {
-            reject(err)
+            reject(err);
         })
     })
 }

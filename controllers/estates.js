@@ -126,8 +126,7 @@ const getEstateUser = (req, res) => {
 
 export {
     createEstate, 
-    filterCityCountry
-    createEstate,
+    filterCityCountry,
     getEstateUser,
     updateEstate,
     viewAllEstates,
