@@ -5,8 +5,8 @@ import{authenticationMiddleware} from '../middlewares'
 
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
 import {getBookings, createBooking, getBookingsTraveler, cancellBookingTraveler, viewBookingTravelerLogin, cancellBookingOwner, confirmBookingOwner} from '../controllers/bookings'
-import {viewAllEstates, viewEstateUser,createEstate,getEstateUser,viewEstateDetail,retLatLon,updateEstate} from '../controllers/estates'
 
+import {viewAllEstates, viewEstateUser,createEstate,getEstateUser,viewEstateDetail,retLatLon,updateEstate,filterCityCountry} from '../controllers/estates'
 
 
 const router = express.Router();
@@ -37,6 +37,8 @@ router.get('/estates/user/:id', authenticationMiddleware ,viewEstateUser); //Rut
 
 //Rutas Estates
 router.post('/estates',authenticationMiddleware,createEstate);
+router.get('/estates/search/', filterCityCountry);
+
 router.get('/estates/cityLatLon/:city' ,retLatLon); // Ruta para regresar las longitudes y latitudes de una ciudad en especifico
 
 router.get('/estates/:id', viewEstateDetail);
