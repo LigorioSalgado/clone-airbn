@@ -1,6 +1,6 @@
 
 
-import {createEstateDB, getEstateDB,updateEstateDB} from '../managers/estates';
+import {createEstateDB, getEstateDB,updateEstateDB,findCityAndCountry, findCityOrCountry} from '../managers/estates';
 
 import db from '../models';
 //Asi siempre se manda a llamar a la bd
@@ -54,8 +54,28 @@ const createEstate = (req,res) => {
         res.json(response).status(201);
     }).catch((err) => {
         res.json(err).status(400);
-    })
+    });
 
+
+}
+
+const filterCityCountry = (request,res) => {
+
+    const {country,city} =  request.query
+
+    if(country==null || city==null){
+        findCityOrCountry(city,country).then((response) => {
+            res.json(response).status(201);
+        }).catch((err) => {
+            res.json(err).status(400);
+        });
+    }else{
+        findCityAndCountry(city,country).then((response) => {
+            res.json(response).status(201);
+        }).catch((err) => {
+            res.json(err).status(400);
+        });
+    }
 
 }
 
@@ -105,8 +125,8 @@ const getEstateUser = (req, res) => {
 }
 
 export {
-
-    createEstate,
+    createEstate, 
+    filterCityCountry,
     getEstateUser,
     updateEstate,
     viewAllEstates,
