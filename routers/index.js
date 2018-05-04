@@ -3,12 +3,13 @@ import {testApi} from '../controllers';
 
 import{authenticationMiddleware} from '../middlewares'
 
-import {viewBookingTravelerLogin} from '../controllers/bookings'
+import {viewBookingTravelerLogin, getBookings, createBooking,
+     getBookingsTraveler} from '../controllers/bookings'
 
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
-import {getBookings, createBooking, getBookingsTraveler} from '../controllers/bookings'
 
-import {viewAllEstates, viewEstateUser,createEstate,getEstateUser,viewEstateDetail,retLatLon,updateEstate} from '../controllers/estates'
+import {viewAllEstates, viewEstateUser,createEstate,getEstateUser,viewEstateDetail,
+    retLatLon,updateEstate} from '../controllers/estates'
 
 
 
