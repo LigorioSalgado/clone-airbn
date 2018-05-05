@@ -3,47 +3,103 @@ import {testApi} from '../controllers';
 
 import{authenticationMiddleware} from '../middlewares'
 
-<<<<<<< HEAD
-import {viewBookingTravelerLogin, getBookings, createBooking,
-     getBookingsTraveler} from '../controllers/bookings'
-
 import {signUP, login, viewUser, updateUser} from '../controllers/users'
+
+
+import {getBookings, createBooking, getBookingsTraveler, cancellBookingTraveler,
+    viewBookingTravelerLogin, cancellBookingOwner, confirmBookingOwner} from '../controllers/bookings'
 
 import {viewAllEstates, viewEstateUser,createEstate,getEstateUser,viewEstateDetail,
-    retLatLon,updateEstate} from '../controllers/estates'
-=======
-import {signUP, login, viewUser, updateUser} from '../controllers/users'
-import {getBookings, createBooking, getBookingsTraveler, cancellBookingTraveler, viewBookingTravelerLogin, cancellBookingOwner, confirmBookingOwner} from '../controllers/bookings'
->>>>>>> 48d204e8bbd2a0e94fabb275d7f64fd02d92b536
-
-import {viewAllEstates, viewEstateUser,createEstate,getEstateUser,viewEstateDetail,retLatLon,updateEstate,filterCityCountry} from '../controllers/estates'
-
+    retLatLon,updateEstate,filterCityCountry} from '../controllers/estates'
 
 const router = express.Router();
 
 router.get('/test',testApi);
 
-//Crear usuario nuevo.
-router.post('/users/signup',signUP);
-
 //Rutas de usuario
+
+/**
+ * @swagger
+ * /users/signup:
+ *   post:
+ *     description: Crear un nuevo usuario 
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - first_name: username
+ *         description: Nombre del usuario.
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: lastname
+ *         description: Apellido del usuario.
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: email
+ *         description: Correo electrónico del usuario.
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: password
+ *         description: Contraseña del usuario.
+ *         in: formData
+ *         required: true
+ *         type: string
+*       - name: phone_number
+ *         description: Telefono del usuario.
+ *         in: formData
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: Usuario creado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: Id del usuario.
+ *                 first_name:
+ *                   type: string
+ *                   description: El nombre del usuario.
+ *                 lastname:
+ *                   type: string
+ *                   description: El apellido del usuario.
+ *                 email:
+ *                   type: string
+ *                   description: El email del usuario.
+ *                 password:
+ *                   type: string
+ *                   description: La contraseña del usuario.
+ *                 phone_number:
+ *                   type: string
+ *                   description: El telefono del usuario. 
+ *       400:
+ *         description: Error de creacion
+ */
+
+
+router.post('/users/signup',signUP); //Crear un nuevo usuario
 router.get('/users/profile', authenticationMiddleware, viewUser); //Ruta para ver usuarios
 router.put('/users/profile', authenticationMiddleware, updateUser); //Ruta para actualizar usuarios
 /**
  * @swagger
  * /login:
  *   post:
- *     description: Login to the application
+ *     description: Iniciar sesión
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: username
- *         description: Username to use for login.
+ *       - name: email
+ *         description: Email para iniciar sesión.
  *         in: formData
  *         required: true
  *         type: string
  *       - name: password
- *         description: User's password.
+ *         description: Contraseña del usuario.
  *         in: formData
  *         required: true
  *         type: string

@@ -6,16 +6,11 @@ const {Booking} = db;
 const viewBookingTravelerLogin =(req,res) => {
     getBookingTravelerLogin(req.user.id, req.params.id).then((response)=>{
         res.json(response).status(200);
-<<<<<<< HEAD
     }).catch((err)=>{
         res.json(err).status(400);
     })
 }
         
-=======
-    }).catch((err)=>{res.json(err).status(400)})
-}
->>>>>>> 48d204e8bbd2a0e94fabb275d7f64fd02d92b536
 
 const createBooking = (req, res) =>{
     createBookingDB(req.body, req.user.id).then((response) => {
