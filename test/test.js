@@ -3,10 +3,24 @@ process.env.NODE_ENV = 'test';
 import chai from 'chai';
 import chaiHTTP from 'chai-http';
 import server from '../server';
+import {User} from '../models';
+
 
 const should = chai.should()
 
 chai.use(chaiHTTP);
+
+
+
+before((done) => { //Before each test we empty the database
+        User.sync({ force : true }) // drops table and re-creates it
+        .then(function() {
+          done(null);
+        })
+        .catch(function(error) {
+          done(error);
+        });
+    });
 
 describe('/GET view estates', () => {
 
@@ -31,7 +45,7 @@ describe('/POST user', () => {
 	
         first_name: "Edwin",
         lastname: "salgado",
-        email:"edwin11111@gmail.com",
+        email:"edwinfdg111@gmail.com",
         password: "edwin2018",
         phone_number: "55101722112"
     }
