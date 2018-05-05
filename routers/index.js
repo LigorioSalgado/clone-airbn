@@ -28,29 +28,38 @@ router.get('/test',testApi);
  *     parameters:
  *       - first_name: username
  *         description: Nombre del usuario.
- *         in: formData
+ *         in: body
  *         required: true
  *         type: string
  *       - name: lastname
  *         description: Apellido del usuario.
- *         in: formData
+ *         in: body
  *         required: true
  *         type: string
  *       - name: email
  *         description: Correo electrónico del usuario.
- *         in: formData
+ *         in: body
  *         required: true
  *         type: string
  *       - name: password
  *         description: Contraseña del usuario.
- *         in: formData
+ *         in: body
  *         required: true
  *         type: string
 *       - name: phone_number
  *         description: Telefono del usuario.
- *         in: formData
+ *         in: body
  *         required: true
  *         type: string
+ *     examples:
+ *       application/json:
+ *         {
+ *           "first_name": "Gerardo",
+ *           "lastname": "Arjona",
+ *           "email":"gerardo.arj15@gmail.com",
+ *           "password": "1q2w3e4r5t6y",
+ *           "phone_number": "5550742202"
+ *         }
  *     responses:
  *       200:
  *         description: Usuario creado
