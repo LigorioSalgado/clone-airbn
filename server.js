@@ -17,6 +17,8 @@ app.use('/api/v1',routes)
 app.get('/',(req,res)=>{res.send("Hola mundo")});
 
 app.listen(port,()=>{
-    db.sequelize.sync();
+    //db.sequelize.sync();
     console.log(`Server start at port ${port}`)
 })
+
+export default app;

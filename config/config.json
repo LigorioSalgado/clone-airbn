@@ -10,11 +10,13 @@
 
       },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
+    "username": "airuser",
+    "password": "airbnb2018",
+    "database": "airbnb",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres",
+    "operatorsAliases": false
+
   },
   "production": {
     "username": "clonearibnb",

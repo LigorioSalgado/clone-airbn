@@ -9,7 +9,8 @@
         "client": "cd client && yarn start",
         "cliente": "cd client && npm run start",
         "server": "nodemon server.js --exec babel-node --presets es2015,stage-2",
-        "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+        "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+        "test":"NODE_PATH=./ NODE_ENV=test mocha --compilers js:babel-core/register ./test/*"
     },
     "dependencies": {
         "bcrypt-nodejs": "^0.0.3",
@@ -29,6 +30,9 @@
         "babel-preset-es2015": "^6.24.1",
         "babel-preset-stage-2": "^6.24.1",
         "concurrently": "^3.5.0",
+        "mocha": "^5.1.1",
+        "chai": "^3.5.0",
+        "chai-http": "^2.0.1",
         "nodemon": "^1.11.0"
     }
 }
