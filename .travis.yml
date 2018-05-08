@@ -11,4 +11,4 @@ deploy:
     branch: develop
   skip_cleanup: true
   notifications:
-    slack: devfb19cdmx:JLbqdsbDgTQLgseqSEqHm1JU#cintanegra
+    slack: devfb19cdmx:JLbqdsbDgTQLgseqSEqHm1JU
