@@ -30,7 +30,7 @@ describe('/GET view estates', () => {
             (err,res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
-                res.body.length.should.be.eql(0);
+                res.body.length.should.be.eql(2);
                 done();
             }
         )
@@ -42,7 +42,7 @@ describe('/GET view estates', () => {
 describe('/POST user', () => {
     it('debe crear un nuevo usuario', (done) => {
       let user = {
-	
+
         first_name: "Edwin",
         lastname: "salgado",
         email:"edwinfdg111@gmail.com",
