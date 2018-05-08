@@ -24,7 +24,13 @@ module.exports = function (sequelize, DataTypes) {
 
     score: {
       type: DataTypes.INTEGER
+    },
+
+    available: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
+
   }, {});
   Booking.associate = function (models) {
     // associations can be defined here

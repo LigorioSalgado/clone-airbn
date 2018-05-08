@@ -11,7 +11,7 @@ module.exports = {
       },
 
       guest: {
-        type: Sequelize.INT
+        type: Sequelize.INTEGER
       },
       checkin: {
         type: Sequelize.DATE
@@ -29,6 +29,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      available: {
+        type: Sequelize.INTEGER,
+        allowNull: false
       }
     });
   },
