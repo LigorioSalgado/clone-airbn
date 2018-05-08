@@ -1,6 +1,5 @@
 language: node_js
 node_js:
-- iojs
 - '7'
 deploy:
   provider: heroku
@@ -11,3 +10,5 @@ deploy:
     repo: LigorioSalgado/clone-airbn
     branch: develop
   skip_cleanup: true
+  notifications:
+    slack: devfb19cdmx:JLbqdsbDgTQLgseqSEqHm1JU#cintanegra
