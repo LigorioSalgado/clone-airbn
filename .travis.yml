@@ -10,3 +10,4 @@ deploy:
   on:
     repo: LigorioSalgado/clone-airbn
     branch: develop
+  skip_cleanup: true
