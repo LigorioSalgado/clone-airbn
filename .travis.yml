@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- iojs
+- '7'
+deploy:
+  provider: heroku
+  api_key:
+    secure: X5Dp5cfZDfDmFQU/1No6qDHaFmUq7N1s/kRbE4ljZ75wn5LwpEf5V9+TQXuoys3g6fCEDVFrT4JLxprP4jbjcvYFKzYcre1qagXAcnRkTLIXJXN3T94lRBxVaTCClxP1Gie6FQrBDzrh5hxS2i9bc6pqiOfyketQzRNVcMKXJzHD6G/NfiXeI3dFzIpgLc1b9w9sZpN9UQsfFGY/b1z04J03EE4cRoUL+LRw61zDjDLD+I+kt7e7QqVBxXVMIsq7mWbz4/ByQ+3DE0dM/yNO3jUqnAOE5pfj4x6Kp/AChgpqML9ygNjdwT1EWA4lP+eB5rGd+YIdXrZK7k53LuSwXXC6fJC831+CgdYb2W0IsOdOwssgPFGOb5rVWpD1C3ytsAK77prD2zSB1u1T+p/ZUCsJH8PZffVYZa7kj8W7YdNZCAbDc1nmkpbJqG6wxsnBK59bOuDC4RGCMiMJh509Jxc3gfjHOCMuNDieO8a7g3b1yEH3YRaAxfwJphiBm/P4JMIEqkHZ/ZTLHnPovq10HvFFV7HaIXzT0tqQ3KIb5egB+7fzeBjCB5j7b4gz4aXq70SPMbHixZflG0RuxDairaYdTs7zcLRU4VaHuu0qAJMOsb4pKNrbN/buDFiDD7xKMCMxVf9rLNVU9VbxXTlQmd4BWEQfqwG0mJcyLvzP9MU=
+  app: airbnb-cn-b19
+  on:
+    repo: LigorioSalgado/clone-airbn
+    branch: develop
