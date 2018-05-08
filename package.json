@@ -10,7 +10,7 @@
         "cliente": "cd client && npm run start",
         "server": "nodemon server.js --exec babel-node --presets es2015,stage-2",
         "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-        "test":"NODE_PATH=./ NODE_ENV=test mocha --compilers js:babel-core/register ./test/*"
+        "test":"NODE_PATH=./ NODE_ENV=test mocha --exit --compilers js:babel-core/register ./test/*"
     },
     "dependencies": {
         "bcrypt-nodejs": "^0.0.3",
