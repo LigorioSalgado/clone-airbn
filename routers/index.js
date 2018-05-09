@@ -154,9 +154,94 @@ router.post('/users/signup',signUP); //Crear un nuevo usuario
  *               type: timestamp with time zone
  *               description: Fecha y hora de creacion.
  *       400:
- *         description: Error de inicio de sesion
+ *         description: Error, token no valido
  */
 router.get('/users/profile', authenticationMiddleware, viewUser); //Ruta para ver usuarios
+
+/**
+ * @swagger
+ * /users/updateUser:
+ *   put:
+ *     description: Actualiza los datos de un usuario
+ *     produces:
+ *       -  application/json
+ *     parameters:
+ *       - name: body
+ *         description: JSON que contiene la informacion necesaria para actualizar un usuario.
+ *         in: body
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             first_name:
+ *               type: string
+ *               description: Nombre del usuario.
+ *             lastname:
+ *               type: string
+ *               description: Apellido del usuario.
+ *             email:
+ *               type: string
+ *               description: Correo electronico del usuario.
+ *             phone_number:
+ *               type: string
+ *               description: Numero telefonico del usuario.
+ *             profile_image:
+ *               type: string
+ *               description: Direccion de la imagen de perfil.
+ *             description:
+ *               type: string
+ *               description: Descripcion del usuario.
+ *             score:
+ *               type: integer
+ *               description: Puntuacion del usuario.
+ *             user_pay:
+ *               type: string
+ *               description: Metodo de pago del usuario.
+ *     responses:
+ *       200:
+ *         description: Datos de usuario. 
+ *         schema:
+ *           type: object
+ *           properties:
+ *             first_name:
+ *               type: string
+ *               description: Nombre del usuario.
+ *             lastname:
+ *               type: string
+ *               description: Apellido del usuario.
+ *             email:
+ *               type: string
+ *               description: Correo electronico del usuario.
+ *             password:
+ *               type: string
+ *               description: Contraseña,cifrada, del usuario.
+ *             phone_number:
+ *               type: string
+ *               description: Numero telefonico del usuario.
+ *             type:
+ *               type: integer
+ *               description: Tipo de usuario.
+ *             updatedAt:
+ *               type: timestamp with time zone
+ *               description: Fecha y hora de la ultima actualizacion realizada.
+ *             createdAt:
+ *               type: timestamp with time zone
+ *               description: Fecha y hora de creacion.
+ *             profile_image:
+ *               type: string
+ *               description: Direccion de la imagen de perfil.
+ *             description:
+ *               type: string
+ *               description: Descripcion del usuario.
+ *             score:
+ *               type: integer
+ *               description: Puntuacion del usuario.
+ *             user_pay:
+ *               type: string
+ *               description: Metodo de pago del usuario.
+ *       400:
+ *         description: Error, token no valido
+ */
 router.put('/users/profile', authenticationMiddleware, updateUser); //Ruta para actualizar usuarios
 
 /**
