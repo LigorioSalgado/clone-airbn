@@ -18,103 +18,179 @@ router.get('/test',testApi);
 
 //Rutas de usuario
 
+//Documentacion necesaria para las rutas
 /**
  * @swagger
  * /users/signup:
  *   post:
  *     description: Crear un nuevo usuario 
  *     produces:
- *       - application/json
+ *       -  application/json
  *     parameters:
- *       - first_name: username
- *         description: Nombre del usuario.
+ *       - name: body
+ *         description: JSON que contiene la informacion necesaria para crear un usuario.
  *         in: body
  *         required: true
- *         type: string
- *       - name: lastname
- *         description: Apellido del usuario.
- *         in: body
- *         required: true
- *         type: string
- *       - name: email
- *         description: Correo electrónico del usuario.
- *         in: body
- *         required: true
- *         type: string
- *       - name: password
- *         description: Contraseña del usuario.
- *         in: body
- *         required: true
- *         type: string
-*       - name: phone_number
- *         description: Telefono del usuario.
- *         in: body
- *         required: true
- *         type: string
- *     examples:
- *       application/json:
- *         {
- *           "first_name": "Gerardo",
- *           "lastname": "Arjona",
- *           "email":"gerardo.arj15@gmail.com",
- *           "password": "1q2w3e4r5t6y",
- *           "phone_number": "5550742202"
- *         }
+ *         schema:
+ *           type: object
+ *           properties:
+ *             first_name:
+ *               type: string
+ *               description: Nombre del usuario.
+ *             lastname:
+ *               type: string
+ *               description: Apellido del usuario.
+ *             email:
+ *               type: string
+ *               description: Correo electronico del usuario.
+ *             password:
+ *               type: string
+ *               description: Contraseña,cifrada, del usuario.
+ *             phone_number:
+ *               type: string
+ *               description: Numero telefonico del usuario.
  *     responses:
  *       200:
- *         description: Usuario creado
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 id:
- *                   type: integer
- *                   description: Id del usuario.
- *                 first_name:
- *                   type: string
- *                   description: El nombre del usuario.
- *                 lastname:
- *                   type: string
- *                   description: El apellido del usuario.
- *                 email:
- *                   type: string
- *                   description: El email del usuario.
- *                 password:
- *                   type: string
- *                   description: La contraseña del usuario.
- *                 phone_number:
- *                   type: string
- *                   description: El telefono del usuario. 
+ *         description: Usuario creado. 
+ *         schema:
+ *           type: object
+ *           properties:
+ *             id:
+ *               type: integer
+ *               description: El ID del isuario.
+ *             first_name:
+ *               type: string
+ *               description: Nombre del usuario.
+ *             lastname:
+ *               type: string
+ *               description: Apellido del usuario.
+ *             email:
+ *               type: string
+ *               description: Correo electronico del usuario.
+ *             password:
+ *               type: string
+ *               description: Contraseña,cifrada, del usuario.
+ *             phone_number:
+ *               type: string
+ *               description: Numero telefonico del usuario.
+ *             type:
+ *               type: integer
+ *               description: Tipo de usuario.
+ *             updatedAt:
+ *               type: timestamp with time zone
+ *               description: Fecha y hora de la ultima actualizacion realizada.
+ *             createdAt:
+ *               type: timestamp with time zone
+ *               description: Fecha y hora de creacion.
+ *             profile_image:
+ *               type: string
+ *               description: Direccion de la imagen de perfil.
+ *             description:
+ *               type: string
+ *               description: Descripcion del usuario.
+ *             score:
+ *               type: integer
+ *               description: Puntuacion del usuario.
+ *             user_pay:
+ *               type: string
+ *               description: Metodo de pago del usuario.
  *       400:
  *         description: Error de creacion
  */
-
-
 router.post('/users/signup',signUP); //Crear un nuevo usuario
-router.get('/users/profile', authenticationMiddleware, viewUser); //Ruta para ver usuarios
-router.put('/users/profile', authenticationMiddleware, updateUser); //Ruta para actualizar usuarios
+
 /**
  * @swagger
- * /login:
- *   post:
- *     description: Iniciar sesión
+ * /users/profile:
+ *   get:
+ *     description: Ver datos de un usuario 
  *     produces:
- *       - application/json
+ *       -  application/json
  *     parameters:
- *       - name: email
- *         description: Email para iniciar sesión.
- *         in: formData
+ *       - name: headers
+ *         in: headers
+ *         description: Token de un usuario enviado para checar informacion del mismo. Formato->"Bearer token".
  *         required: true
- *         type: string
- *       - name: password
- *         description: Contraseña del usuario.
- *         in: formData
- *         required: true
- *         type: string
  *     responses:
  *       200:
- *         description: login
+ *         description: Datos del usuario. 
+ *         schema:
+ *           type: object
+ *           properties:
+ *             first_name:
+ *               type: string
+ *               description: Nombre del usuario.
+ *             lastname:
+ *               type: string
+ *               description: Apellido del usuario.
+ *             email:
+ *               type: string
+ *               description: Correo electronico del usuario.
+ *             password:
+ *               type: string
+ *               description: Contraseña,cifrada, del usuario.
+ *             phone_number:
+ *               type: string
+ *               description: Numero telefonico del usuario.
+ *             type:
+ *               type: integer
+ *               description: Tipo de usuario.
+ *             profile_image:
+ *               type: string
+ *               description: Direccion de la imagen de perfil.
+ *             description:
+ *               type: string
+ *               description: Descripcion del usuario.
+ *             score:
+ *               type: integer
+ *               description: Puntuacion del usuario.
+ *             user_pay:
+ *               type: string
+ *               description: Metodo de pago del usuario.
+ *             updatedAt:
+ *               type: timestamp with time zone
+ *               description: Fecha y hora de la ultima actualizacion realizada.
+ *             createdAt:
+ *               type: timestamp with time zone
+ *               description: Fecha y hora de creacion.
+ *       400:
+ *         description: Error de inicio de sesion
+ */
+router.get('/users/profile', authenticationMiddleware, viewUser); //Ruta para ver usuarios
+router.put('/users/profile', authenticationMiddleware, updateUser); //Ruta para actualizar usuarios
+
+/**
+ * @swagger
+ * /users/login:
+ *   post:
+ *     description: Inicio de sesion de un usuario 
+ *     produces:
+ *       -  application/json
+ *     parameters:
+ *       - name: body
+ *         description: JSON que contiene la informacion necesaria para que un usuario inicie sesion.
+ *         in: body
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             email:
+ *               type: string
+ *               description: Correo electronico del usuario.
+ *             password:
+ *               type: string
+ *               description: Contraseña,cifrada, del usuario.
+ *     responses:
+ *       200:
+ *         description: Usuario creado. 
+ *         schema:
+ *           type: object
+ *           properties:
+ *             token:
+ *               type: token
+ *               description: Token del usuario.
+ *       400:
+ *         description: Error de inicio de sesion
  */
 router.post('/users/login',login);
 
