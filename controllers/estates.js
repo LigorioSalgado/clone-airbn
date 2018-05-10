@@ -3,9 +3,10 @@
 import {createEstateDB, getEstateDB,updateEstateDB,findCityAndCountry, findCityOrCountry} from '../managers/estates';
 
 import db from '../models';
+import { createBooking } from './bookings';
 //Asi siempre se manda a llamar a la bd
 
-const {Estate, Address, Service, User} = db; //db trae todas las tablas de BD
+const {Estate, Address, Service, User, Booking} = db; //db trae todas las tablas de BD
 
 
 
@@ -103,7 +104,42 @@ const retLatLon = (request,response) => { //Regresa las longitudes y latitudes d
     });
 }
 
-
+const getAvaliable = (req, res) => {
+    console.log(req.params)
+    Estate.findOne({
+        model: Estate,
+        attributes: ['price', 'id'],
+        where:{
+           id: req.params.id,
+           available: true
+        }
+    }).then((estate) => {
+        Booking.findAll({
+           // attributes:['checkin','checkout'],
+            where: {
+                EstateId: req.params.id
+            }
+        }).then((response) =>{
+            response.map(data =>{
+                let checkIn = data.dataValues.checkin;
+                let checkOut = data.dataValues.checkout;
+                let oneDay = 24*60*60*1000;
+                var diffDays = Math.round(Math.abs((checkOut.getTime() - checkIn.getTime())/(oneDay)));
+                console.log(checkIn);
+                console.log(checkOut);
+                console.log(diffDays);
+                var priceResult = (diffDays * (data.dataValues.totalprice));
+                console.log(priceResult);
+            })
+            res.json(response).status(200);
+        }).catch((err) =>{
+            response.status(400).json(err);
+        })
+    }).catch((err) =>{
+        response.status(400).json(err);
+    })
+   
+}
 
 
 const viewEstateDetail = (req,res)=>{
@@ -132,6 +168,7 @@ export {
     viewAllEstates,
     viewEstateUser,
     viewEstateDetail,
-    retLatLon
+    retLatLon,
+    getAvaliable
 }
 

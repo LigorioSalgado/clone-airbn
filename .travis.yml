@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- '7'
+deploy:
+  provider: heroku
+  api_key:
+    secure: YWmRpIb5I6a0CErhcmvVFfDvZYf/hRgUVOJFqBfXr53M0VHJ82NILXhaboMX/lf6JhuFND621M8AlNK0lyZnAFoANIhbLZyNZN/SpJ8EqUYhpwm4R863yQyyTgC0ghe51WZ3/J/DCQWUXi4AJhmqbm3wzexMvQsP0EtjSeQqOyfEr9QATWIzu9FagT1F8VPN2mMcTPhv5iSrPC+rlxIyiU2oYHJ+gLa5S5Pw+K9nIFRBhhTklUM76iaF6aJ9w10QacOrGA5fl8R1xWUYBwCdJHa6tb28XcCKknlgQC/+nUVTPPvEiUCmdKCGujeAHPFYpgA/oQaEKdRr1QqUEaPR8xsKafrYAaHK+QnjYLpf2tRmX00/Du17YphnAhVquByz6Taps1fXt/+fwdTH/2bIMRHGjNQhOJjp3parpvvSvnLgrvjFSr9qKUYhfml6CiuDkGrEr/s0kS5I3HtWqchl9t8cYWxFaNesfuODWF518E/9ix26dykMQVHU29NVVJaX8lxHdJHMvygaIu9s+27+ogtm2j/he6B8JeDfCUvNsLhfGDb/SBfS3WTVNQEk256PFzstYOeOgxxMspexaJKSDalJJZkP7Boc7awazvRcLH6YH9qccQ/M5Z0MUFFjvS6b2zKdOddymw8bexEMPjlY6LzdYPEGBvro4fizA5UwP7M=
+  app: airbnb-cn-b19
+  on:
+    repo: LigorioSalgado/clone-airbn
+    branch: develop
+  skip_cleanup: true
+  notifications:
+    slack: devfb19cdmx:JLbqdsbDgTQLgseqSEqHm1JU

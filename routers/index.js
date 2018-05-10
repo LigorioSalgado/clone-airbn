@@ -43,8 +43,8 @@ router.put('/users/profile', authenticationMiddleware, updateUser); //Ruta para 
  */
 router.post('/users/login',login);
 
-router.get('/users/booking/:id', authenticationMiddleware, viewBookingTravelerLogin);
 //Rutas bookings
+router.get('/traveler/booking/:id', authenticationMiddleware, viewBookingTravelerLogin);
 router.post('/bookings',authenticationMiddleware,createBooking);
 router.get('/traveler/bookings',authenticationMiddleware,getBookingsTraveler);
 router.delete('/traveler/booking/:id', authenticationMiddleware, cancellBookingTraveler);

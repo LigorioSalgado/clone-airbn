@@ -33,15 +33,31 @@ router.put('/users/profile', _middlewares.authenticationMiddleware, _users.updat
 router.post('/users/login', _users.login);
 
 //Rutas bookings
+router.get('/traveler/booking/:id', _middlewares.authenticationMiddleware, _bookings.viewBookingTravelerLogin);
 router.post('/bookings', _middlewares.authenticationMiddleware, _bookings.createBooking);
+router.get('/traveler/bookings', _middlewares.authenticationMiddleware, _bookings.getBookingsTraveler);
+router.delete('/traveler/booking/:id', _middlewares.authenticationMiddleware, _bookings.cancellBookingTraveler);
+
+router.get('/owner/booking/:id', _middlewares.authenticationMiddleware, _bookings.confirmBookingOwner);
+router.put('/owner/booking/:id', _middlewares.authenticationMiddleware, _bookings.confirmBookingOwner);
+router.delete('/owner/booking/:id', _middlewares.authenticationMiddleware, _bookings.cancellBookingOwner);
 
 //Rutas de Propiedades
 router.get('/estates/view', _estates.viewAllEstates); //Ruta para ver todas las propiedades
 router.get('/estates/user/:id', _middlewares.authenticationMiddleware, _estates.viewEstateUser); //Ruta para ver todas las propiedades de un usuario
+
+//Rutas Estates
 router.post('/estates', _middlewares.authenticationMiddleware, _estates.createEstate);
+router.get('/estates/search/', _estates.filterCityCountry);
+
+router.get('/estates/cityLatLon/:city', _estates.retLatLon); // Ruta para regresar las longitudes y latitudes de una ciudad en especifico
+
 router.get('/estates/:id', _estates.viewEstateDetail);
 
+//Actualizar Propiedades del Usuario
+router.put('/estate/:id', _middlewares.authenticationMiddleware, _estates.updateEstate);
+
 //traer Propiedades de Ususario
-router.get('/getestate', _middlewares.authenticationMiddleware, _estates.getEstateUser);
+router.get('/estates/user', _middlewares.authenticationMiddleware, _estates.getEstateUser);
 
 exports.default = router;

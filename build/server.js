@@ -1,5 +1,9 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
@@ -36,6 +40,8 @@ app.get('/', function (req, res) {
 });
 
 app.listen(port, function () {
-    _models2.default.sequelize.sync();
+    //db.sequelize.sync();
     console.log('Server start at port ' + port);
 });
+
+exports.default = app;
