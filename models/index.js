@@ -43,5 +43,6 @@ db.Estate.belongsTo(db.User);
 db.Booking.belongsTo(db.User);
 db.Booking.belongsTo(db.Estate);
 
+const Op = Sequelize.Op;
 
 module.exports = db;

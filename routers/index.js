@@ -7,7 +7,7 @@ import {signUP, login, viewUser, updateUser} from '../controllers/users'
 
 
 import {getBookings, createBooking, getBookingsTraveler, cancellBookingTraveler,
-    viewBookingTravelerLogin, cancellBookingOwner, confirmBookingOwner} from '../controllers/bookings'
+    viewBookingTravelerLogin, cancellBookingOwner, confirmBookingOwner, putBookingScore} from '../controllers/bookings'
 
 import {viewAllEstates, viewEstateUser,createEstate,getEstateUser,viewEstateDetail,
     retLatLon,updateEstate,filterCityCountry} from '../controllers/estates'
@@ -393,6 +393,8 @@ router.get('/traveler/bookings',authenticationMiddleware,getBookingsTraveler);
  *         description: Bad request
  */
 router.delete('/traveler/booking/:id', authenticationMiddleware, cancellBookingTraveler);
+
+router.put('/traveler/booking/score/:id', authenticationMiddleware, putBookingScore);
 
 /**
  * @swagger

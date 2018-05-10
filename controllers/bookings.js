@@ -1,4 +1,4 @@
-import {createBookingDB, getBookingsTravelerDB,getBookingTravelerLogin, updateBookingOwnerDB, updateBookingTravelerDB, getBookingOwnerDB} from '../managers/bookings';
+import {createBookingDB, getBookingsTravelerDB,getBookingTravelerLogin, updateBookingOwnerDB, updateBookingTravelerDB, getBookingOwnerDB, putBookingScoreDB} from '../managers/bookings';
 import db from '../models';
 
 const {Booking} = db;
@@ -60,11 +60,18 @@ const confirmBookingOwner = (req, res) => {
     })
 }
 
+const putBookingScore = (req, res) => {
+    putBookingScoreDB(req.user.id, req.params.id, req.body.score).then((response)=>{
+        res.json(response).status(200);
+    }).catch((err)=>{res.json(err).status(400)});
+}
+
 export{
     viewBookingTravelerLogin,
     createBooking, 
     getBookingsTraveler,
     cancellBookingTraveler,
     cancellBookingOwner,
-    confirmBookingOwner
+    confirmBookingOwner,
+    putBookingScore
 }

@@ -1,4 +1,7 @@
 import db from '../models';
+import Sequelize from 'sequelize'
+
+var Op = Sequelize.Op;
 
 const {Estate,Address,Service,User,Booking}  = db;
 
@@ -68,6 +71,8 @@ const updateBookingTravelerDB = (userId, bookingId, statusAvailable) => {
     })
 }
 
+
+
 const getBookingOwnerDB = (userId, bookingId) => {
     return new Promise ((resolve, reject) => {
         Booking.find(
@@ -108,11 +113,31 @@ const updateBookingOwnerDB = (userId, bookingId, statusAvailable) => {
     })
 }
 
+const putBookingScoreDB = (userId, bookingId, userScore) => {
+    return new Promise ((resolve, reject) => {
+        Booking.update({score: userScore},
+            {where: {
+                UserId:userId,
+                id:bookingId,
+                score:null,
+                checkin:{
+                    [Op.lt]: new Date()
+                }
+            }
+        }).then((booking) => {
+            resolve(getBookingTravelerLogin(bookingId, userId))
+        }).catch((err) => {
+            reject(err)
+        })
+    })
+}
+
 export {
     getBookingTravelerLogin,
     createBookingDB,
     getBookingsTravelerDB,
     updateBookingTravelerDB,
     getBookingOwnerDB,
-    updateBookingOwnerDB
+    updateBookingOwnerDB,
+    putBookingScoreDB
 }
