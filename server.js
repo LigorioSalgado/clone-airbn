@@ -21,6 +21,11 @@ const options = {
         version: '1.0.0', // Version (required)
       },
     },
+    securityDefinitions: {
+      auth: {
+        type: 'basic'
+      }
+    },
     apis: ['./routers/index.js'], 
   };
 
