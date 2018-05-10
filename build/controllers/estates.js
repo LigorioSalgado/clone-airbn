@@ -3,13 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.retLatLon = exports.viewEstateDetail = exports.viewEstateUser = exports.viewAllEstates = exports.updateEstate = exports.getEstateUser = exports.filterCityCountry = exports.createEstate = undefined;
+exports.getAvaliable = exports.retLatLon = exports.viewEstateDetail = exports.viewEstateUser = exports.viewAllEstates = exports.updateEstate = exports.getEstateUser = exports.filterCityCountry = exports.createEstate = undefined;
 
 var _estates = require('../managers/estates');
 
 var _models = require('../models');
 
 var _models2 = _interopRequireDefault(_models);
+
+var _bookings = require('./bookings');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18,7 +20,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Estate = _models2.default.Estate,
     Address = _models2.default.Address,
     Service = _models2.default.Service,
-    User = _models2.default.User; //db trae todas las tablas de BD
+    User = _models2.default.User,
+    Booking = _models2.default.Booking; //db trae todas las tablas de BD
 
 
 var viewAllEstates = function viewAllEstates(request, response) {
@@ -110,6 +113,42 @@ var retLatLon = function retLatLon(request, response) {
     });
 };
 
+var getAvaliable = function getAvaliable(req, res) {
+    console.log(req.params);
+    Estate.findOne({
+        model: Estate,
+        attributes: ['price', 'id'],
+        where: {
+            id: req.params.id,
+            available: true
+        }
+    }).then(function (estate) {
+        Booking.findAll({
+            // attributes:['checkin','checkout'],
+            where: {
+                EstateId: req.params.id
+            }
+        }).then(function (response) {
+            response.map(function (data) {
+                var checkIn = data.dataValues.checkin;
+                var checkOut = data.dataValues.checkout;
+                var oneDay = 24 * 60 * 60 * 1000;
+                var diffDays = Math.round(Math.abs((checkOut.getTime() - checkIn.getTime()) / oneDay));
+                console.log(checkIn);
+                console.log(checkOut);
+                console.log(diffDays);
+                var priceResult = diffDays * data.dataValues.totalprice;
+                console.log(priceResult);
+            });
+            res.json(response).status(200);
+        }).catch(function (err) {
+            response.status(400).json(err);
+        });
+    }).catch(function (err) {
+        response.status(400).json(err);
+    });
+};
+
 var viewEstateDetail = function viewEstateDetail(req, res) {
     (0, _estates.getEstateDB)(req.params.id).then(function (response) {
         res.json(response).status(200);
@@ -133,3 +172,4 @@ exports.viewAllEstates = viewAllEstates;
 exports.viewEstateUser = viewEstateUser;
 exports.viewEstateDetail = viewEstateDetail;
 exports.retLatLon = retLatLon;
+exports.getAvaliable = getAvaliable;

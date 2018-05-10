@@ -5,7 +5,8 @@ module.exports = function (sequelize, DataTypes) {
 
     guest: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      required: true
     },
     checkin: {
       type: DataTypes.DATE,
@@ -19,7 +20,8 @@ module.exports = function (sequelize, DataTypes) {
     },
     totalprice: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
+      required: true
     },
 
     score: {
@@ -28,7 +30,8 @@ module.exports = function (sequelize, DataTypes) {
 
     available: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      required: true
     }
 
   }, {});
