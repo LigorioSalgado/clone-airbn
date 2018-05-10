@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
 
     guest: {
       type:DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      required: true,
     },
     checkin: {
       type: DataTypes.DATE,
@@ -18,12 +19,20 @@ module.exports = (sequelize, DataTypes) => {
     },
     totalprice:{
        type:DataTypes.DECIMAL,
-       allowNull:false
+       allowNull:false,
+       required: true,
     },
 
     score: {
       type:DataTypes.INTEGER, 
+    },
+
+    available: {
+      type:DataTypes.INTEGER, 
+      allowNull: false,
+      required: true,
     }
+
   }, {});
   Booking.associate = function(models) {
     // associations can be defined here

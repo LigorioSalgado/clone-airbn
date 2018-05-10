@@ -2,12 +2,9 @@
 
 module.exports = function (sequelize, DataTypes) {
   var Service = sequelize.define('Service', {
-    estate_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
+
     wifi: DataTypes.BOOLEAN,
-    baños: DataTypes.INTEGER,
+    bathrooms: DataTypes.INTEGER,
     estufa: DataTypes.BOOLEAN,
     parking: DataTypes.BOOLEAN,
     beds: DataTypes.INTEGER,

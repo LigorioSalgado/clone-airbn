@@ -2,6 +2,7 @@
 
 module.exports = function (sequelize, DataTypes) {
   var Address = sequelize.define('Address', {
+
     calle: {
       type: DataTypes.STRING,
       allowNull: false,
