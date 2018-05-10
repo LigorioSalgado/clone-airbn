@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.viewEstateDetail = exports.viewEstateUser = exports.viewAllEstates = exports.getEstateUser = exports.createEstate = undefined;
+exports.retLatLon = exports.viewEstateDetail = exports.viewEstateUser = exports.viewAllEstates = exports.updateEstate = exports.getEstateUser = exports.filterCityCountry = exports.createEstate = undefined;
 
 var _estates = require('../managers/estates');
 
@@ -65,6 +65,51 @@ var createEstate = function createEstate(req, res) {
     });
 };
 
+var filterCityCountry = function filterCityCountry(request, res) {
+    var _request$query = request.query,
+        country = _request$query.country,
+        city = _request$query.city;
+
+
+    if (country == null || city == null) {
+        (0, _estates.findCityOrCountry)(city, country).then(function (response) {
+            res.json(response).status(201);
+        }).catch(function (err) {
+            res.json(err).status(400);
+        });
+    } else {
+        (0, _estates.findCityAndCountry)(city, country).then(function (response) {
+            res.json(response).status(201);
+        }).catch(function (err) {
+            res.json(err).status(400);
+        });
+    }
+};
+
+var updateEstate = function updateEstate(req, res) {
+    (0, _estates.updateEstateDB)(req.body, req.params.id, req.user.id).then(function (response) {
+        res.json(response).status(200);
+    }).catch(function (err) {
+        res.json(err).status(400);
+    });
+};
+
+var retLatLon = function retLatLon(request, response) {
+    //Regresa las longitudes y latitudes de una ciudad 
+
+    Address.findAll({
+        model: Address,
+        attributes: ['lat', 'long', 'EstateId'],
+        where: {
+            ciudad: request.params.city
+        }
+    }).then(function (user) {
+        response.json(user);
+    }).catch(function (err) {
+        response.status(400).json(err);
+    });
+};
+
 var viewEstateDetail = function viewEstateDetail(req, res) {
     (0, _estates.getEstateDB)(req.params.id).then(function (response) {
         res.json(response).status(200);
@@ -81,7 +126,10 @@ var getEstateUser = function getEstateUser(req, res) {
 };
 
 exports.createEstate = createEstate;
+exports.filterCityCountry = filterCityCountry;
 exports.getEstateUser = getEstateUser;
+exports.updateEstate = updateEstate;
 exports.viewAllEstates = viewAllEstates;
 exports.viewEstateUser = viewEstateUser;
 exports.viewEstateDetail = viewEstateDetail;
+exports.retLatLon = retLatLon;

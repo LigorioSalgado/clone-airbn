@@ -279,14 +279,195 @@ router.put('/users/profile', authenticationMiddleware, updateUser); //Ruta para 
  */
 router.post('/users/login',login);
 
-router.get('/users/booking/:id', authenticationMiddleware, viewBookingTravelerLogin);
 //Rutas bookings
 router.post('/bookings',authenticationMiddleware,createBooking);
+
+/**
+ * @swagger
+ * /owner/booking:
+ *   get:
+ *     description: Get an specific booking of traveler
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: Authorization
+ *         description: Bearer $token
+ *         in: headers
+ *         required: true
+ *         type: bearer
+  *       - name: id
+ *         description: Bearer $token
+ *         in: query
+ *         required: true
+ *         type: int
+ *     responses:
+ *       200:
+ *         description: Booking, Estate, Services, Adress, User(traveler-- fisrt_name, last_name, email, phone_number, profile_image)
+ *       400:
+ *         description: Bad request
+ */
+router.get('/users/booking/:id', authenticationMiddleware, viewBookingTravelerLogin);
+/**
+ * @swagger
+ * /bookings:
+ *   post:
+ *     description: Create booking
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: Authorization
+ *         description: Bearer $token
+ *         in: headers
+ *         required: true
+ *         type: bearer
+ *       - name: guest
+ *         description: Number of guest of the booking.
+ *         in: formData
+ *         required: true
+ *         type: integer
+ *       - name: checkin
+ *         description: Checkin of the booking
+ *         in: formData
+ *         required: true
+ *         type: timestamp
+ *       - name: checkout
+ *         description: Checkout of the booking
+ *         in: formData
+ *         required: true
+ *         type: timestamp
+ *       - name: totalprice
+ *         description: Totalprice (nights * price)
+ *         in: formData
+ *         required: true
+ *         type: decimal
+ * 
+ *     responses:
+ *       200:
+ *         description: Booking created
+ *       400:
+ *         description: Bad request
+ */
+router.post('/traveler/bookings',authenticationMiddleware,createBooking);
+/**
+ * @swagger
+ * /traveler/bookings:
+ *   get:
+ *     description: Get all bookings of traveler
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: Authorization
+ *         description: Bearer $token
+ *         in: headers
+ *         required: true
+ *         type: bearer
+ *     responses:
+ *       200:
+ *         description: array of bookings that contains [estate_name, pais, ciudad, first_name, profile_image]
+ *       400:
+ *         description: Bad request
+ */
 router.get('/traveler/bookings',authenticationMiddleware,getBookingsTraveler);
+/**
+ * @swagger
+ * /traveler/booking:
+ *   delete:
+ *     description: Get all bookings of traveler
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: Authorization
+ *         description: Bearer $token
+ *         in: headers
+ *         required: true
+ *         type: bearer
+ *       - name: id
+ *         description: BookingId
+ *         in: query
+ *         required: true
+ *         type: int
+ *     responses:
+ *       200:
+ *         description: Update Booking
+ *       400:
+ *         description: Bad request
+ */
 router.delete('/traveler/booking/:id', authenticationMiddleware, cancellBookingTraveler);
 
+/**
+ * @swagger
+ * /owner/booking:
+ *   get:
+ *     description: Get an specific booking of owner
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: Authorization
+ *         description: Bearer $token
+ *         in: headers
+ *         required: true
+ *         type: bearer
+ *       - name: id
+ *         description: Bearer $token
+ *         in: query
+ *         required: true
+ *         type: int
+ *     responses:
+ *       200:
+ *         description: {All information of Booking, Estate and User(traveler)}
+ *       400:
+ *         description: Bad request
+ */
 router.get('/owner/booking/:id', authenticationMiddleware, confirmBookingOwner);
+/**
+ * @swagger
+ * /owner/booking:
+ *   put:
+ *     description: Confirm a Booking
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: Authorization
+ *         description: Bearer $token
+ *         in: headers
+ *         required: true
+ *         type: bearer
+ *       - name: id
+ *         description: Bearer $token
+ *         in: query
+ *         required: true
+ *         type: int
+ *     responses:
+ *       200:
+ *         description: Booking updated
+ *       400:
+ *         description: Bad request
+ */
 router.put('/owner/booking/:id', authenticationMiddleware, confirmBookingOwner);
+/**
+ * @swagger
+ * /owner/booking:
+ *   delete:
+ *     description: Cancel a booking
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: Authorization
+ *         description: Bearer $token
+ *         in: headers
+ *         required: true
+ *         type: bearer
+ *       - name: id
+ *         description: Bearer $token
+ *         in: query
+ *         required: true
+ *         type: int
+ *     responses:
+ *       200:
+ *         description: Booking updated
+ *       400:
+ *         description: Bad request
+ */
 router.delete('/owner/booking/:id', authenticationMiddleware, cancellBookingOwner);
 
 //Rutas de Propiedades

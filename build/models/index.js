@@ -38,5 +38,6 @@ db.Estate.hasOne(db.Address);
 db.Estate.hasMany(db.Booking);
 db.Estate.belongsTo(db.User);
 db.Booking.belongsTo(db.User);
+db.Booking.belongsTo(db.Estate);
 
 module.exports = db;

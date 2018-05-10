@@ -21,6 +21,11 @@ const options = {
         version: '1.0.0', // Version (required)
       },
     },
+    securityDefinitions: {
+      auth: {
+        type: 'basic'
+      }
+    },
     apis: ['./routers/index.js'], 
   };
 
@@ -37,3 +42,5 @@ app.listen(port,()=>{
     //db.sequelize.sync();
     console.log(`Server start at port ${port}`)
 })
+
+export default app;
