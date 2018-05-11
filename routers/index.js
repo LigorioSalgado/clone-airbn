@@ -476,16 +476,124 @@ router.get('/estates/user/:id', authenticationMiddleware ,viewEstateUser); //Rut
 
 //Rutas Estates
 router.post('/estates',authenticationMiddleware,createEstate);
-router.get('/estates/search/', filterCityCountry);
+
+
+/**
+ * @swagger
+ * /estates/search/:
+ *   get:
+ *     description: Busca propiedas por-> Ciudad | Pais | Ciudad y pais 
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: query
+ *         name: city
+ *         schema:
+ *           type: string
+ *         description: Query parameter -> City (Ciudad).
+ *       - in: query
+ *         name: country
+ *         schema:
+ *           type: string
+ *         description: Query parameter -> Country (Pais).
+ *     responses:
+ *       200:
+ *         description: Coincidencias encontradas. 
+ *         schema:
+ *           type: object
+ *           properties:
+ *             id:
+ *               type: integer
+ *               description: Id de la propiedad.
+ *             estate_name:
+ *               type: string
+ *               description: Nombre de la propiedad.
+ *             description:
+ *               type: string
+ *               description: Descripcion de la propiedad.
+ *             score:
+ *               type: decimal
+ *               description: Evaluacion de la propiedad.
+ *             price:
+ *               type: decimal
+ *               description: Precio de la propiedad.
+ *             available:
+ *               type: boolean
+ *               description: Disponibilidad de la propiedad.
+ *             photos:
+ *               type: string
+ *               description: URL de las fotos de la propiedad.
+ *             createdAt:
+ *               type: timestamp with time zone
+ *               description: Fecha y hora de creacion.
+ *             updatedAt:
+ *               type: timestamp with time zone
+ *               description: Fecha y hora de la ultima actualizacion realizada.
+ *             UserId:
+ *               type: integer
+ *               description: Id del dueño de la propiedad.
+ *             Address:
+ *               type: object
+ *               description: Direccion del usuario.
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: Id de la direccion de la propiedad
+ *                 calle:
+ *                   type: integer
+ *                   description: Calle de la propiedad.
+ *                 num_ext:
+ *                   type: string
+ *                   description: Numero exterior de la propiedad.
+ *                 num_int:
+ *                   type: string
+ *                   description: Numero interior de la propiedad.
+ *                 colonia:
+ *                   type: string
+ *                   description: Colonia donde se encuentra la propiedad.
+ *                 ciudad:
+ *                   type: string
+ *                   description: Ciudad donde se encuentra la propiedad.
+ *                 estado:
+ *                   type: string
+ *                   description: Estado donde se encuentra la propiedad.
+ *                 pais:
+ *                   type: string
+ *                   description: Pais donde se encuentra la propiedad.
+ *                 cp:
+ *                   type: integer
+ *                   description: Codigo de la propiedad.
+ *                 lat:
+ *                   type: float
+ *                   description: Latitud de la propiedad.
+ *                 lon:
+ *                   type: float
+ *                   description: Longitud de la propiedad.
+ *                 ref:
+ *                   type: text
+ *                   description: Referencias para encontrar la propiedad.
+ *                 createdAt:
+ *                   type: timestamp with time zone
+ *                   description: Fecha y hora de creacion.
+ *                 updatedAt:
+ *                   type: timestamp with time zone
+ *                   description: Fecha y hora de la ultima actualizacion realizada.
+ *                 EstateId:
+ *                   type: integer
+ *                   description: Id de la propiedad a la que la direccion pertenece.
+ *       400:
+ *         description: No hay coincidencias
+ */
+router.get('/estates/search/', filterCityCountry);//Buscador por ciudad o pais
 
 router.get('/estates/cityLatLon/:city' ,retLatLon); // Ruta para regresar las longitudes y latitudes de una ciudad en especifico
 
-router.get('/estates/:id', viewEstateDetail);
+router.get('/estates/:id', viewEstateDetail);//Arturo
 
 //Actualizar Propiedades del Usuario
-router.put('/estate/:id',authenticationMiddleware, updateEstate);
+router.put('/estate/:id',authenticationMiddleware, updateEstate);//Arturo
 
 //traer Propiedades de Ususario
-router.get('/estates/user', authenticationMiddleware, getEstateUser);
+router.get('/estates/user', authenticationMiddleware, getEstateUser);//Arturo
 
 export default router;
