@@ -586,6 +586,41 @@ router.post('/estates',authenticationMiddleware,createEstate);
  */
 router.get('/estates/search/', filterCityCountry);//Buscador por ciudad o pais
 
+/**
+ * @swagger
+ * /estates/cityLatLon/{city}:
+ *   get:
+ *     description: Regresa la longitud y latitud de la ciudad especificada 
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: path
+ *         name: city
+ *         schema:
+ *           type: string
+ *         description: Path parameter -> City (Ciudad).
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: Coincidencias encontradas. 
+ *         schema:
+ *           type: array
+ *           properties:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 lat:
+ *                   type: float
+ *                   description: Latitud de la propiedad encontrada
+ *                 lon:
+ *                   type: float
+ *                   description: Longitud de la propiedad encontrada
+ *                 UserId:
+ *                   type: integer
+ *                   description: Id del dueño de la propiedad
+ *       400:
+ *         description: No hay coincidencias
+ */
 router.get('/estates/cityLatLon/:city' ,retLatLon); // Ruta para regresar las longitudes y latitudes de una ciudad en especifico
 
 router.get('/estates/:id', viewEstateDetail);//Arturo
