@@ -1,5 +1,6 @@
 import {createBookingDB, getBookingsTravelerDB,getBookingTravelerLogin, updateBookingOwnerDB, updateBookingTravelerDB, getBookingOwnerDB, putBookingScoreDB} from '../managers/bookings';
 import db from '../models';
+import {createOrder} from '../conekta'
 
 const {Booking} = db;
 
@@ -13,10 +14,15 @@ const viewBookingTravelerLogin =(req,res) => {
         
 
 const createBooking = (req, res) =>{
-    createBookingDB(req.body, req.user.id).then((response) => {
-        res.json(response).status(201);
+    createOrder(req.body, req.user).then((response) => {
+        createBookingDB(req.body, req.user.id).then((response) => {
+            res.status(201).json(response);
+        }).catch((err) => {
+            res.json(err).status(400);
+        })
     }).catch((err) => {
-        res.json(err).status(400);
+        console.log(err.http_code)
+        res.status(err.http_code).json(err.details[0]);
     })
 }
 

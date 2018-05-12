@@ -340,7 +340,16 @@ router.get('/users/booking/:id', authenticationMiddleware, viewBookingTravelerLo
  *         in: formData
  *         required: true
  *         type: decimal
- * 
+ *       - name: EstateId
+ *         description: EstateId
+ *         in: formData
+ *         required: true
+ *         type: integer
+ *       - name: card_token
+ *         description: cardToken to pay
+ *         in: formData
+ *         required: true
+ *         type: integer 
  *     responses:
  *       200:
  *         description: Booking created
